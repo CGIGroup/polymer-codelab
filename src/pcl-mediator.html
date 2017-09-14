@@ -1,0 +1,58 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="pcl-styles.html">
+<link rel="import" href="pcl-mediator-child1.html">
+<link rel="import" href="pcl-mediator-child2.html">
+
+<dom-module id="pcl-mediator">
+    <template>
+        <style include="iron-flex iron-flex-alignment iron-positioning"></style>
+        <style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+
+        <div class="card">
+            <a href="url">source</a>
+            <h2>Mediator Pattern</h2>
+            <p>The parent element serves a mediator</p>
+            <p>The parent element automatically listens for changes to any of the attributes used in child elements, provided
+                they are surrounded by a moustache: "{{ }}". When he parent is notified of a change to an attribute value,
+                it first does a 'dirty check'. If the the value has in fact changed, any child elements that happen to
+                be using that attribute get the new value passed to them. This 'Bidirectional Data Binding' is extremely powerful.</p>
+            <p>This how our child elements are called.</p>
+            <xmp>
+<pcl-mediator-child1 child-prop="{{childProp} }"></pcl-mediator-child1>
+<pcl-mediator-child2 child-prop="[[childProp] ]"></pcl-mediator-child2>
+            </xmp>
+            <ul>
+                <li>The attribute name in HTML is lowercase-hyphenated, whereas the JS name is camelCase</li>
+                <li>In the second instance child2, we are using square brackets: "[[ ]]". This is because we don't expect the child
+                to update this value</li>
+            </ul>
+            <p>Value received from child1: <br>[[childProp]] </p>
+        </div>
+
+        <div class="layout horizontal">
+            <pcl-mediator-child1 class="flex" child-prop="{{childProp}}"></pcl-mediator-child1>
+            <pcl-mediator-child2 class="flex" child-prop="[[childProp]]"></pcl-mediator-child2>
+        </div>
+    </template>
+
+    <script>
+        class PclMediator extends Polymer.Element {
+            static get is() { return 'pcl-mediator'; }
+            static get properties() {
+                return {
+                    childProp: {
+                        type: String
+                    }
+                };
+            }
+        }
+
+        window.customElements.define(PclMediator.is, PclMediator);
+    </script>
+</dom-module>

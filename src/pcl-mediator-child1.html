@@ -1,0 +1,42 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="pcl-styles.html">
+
+<dom-module id="pcl-mediator-child1">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+
+        <div class="card">
+            <h3>Child 1</h3>
+            <paper-input label="childProp" value="{{childProp}}"></paper-input>
+            <p>This is how childProp is declared</p>
+            <pre>
+childProp: {
+    type: String,
+    notify: true //Changes are propagate to the parent
+}
+            </pre>
+        </div>
+    </template>
+
+    <script>
+
+        class PclMediatorChild1 extends Polymer.Element {
+            static get is() { return 'pcl-mediator-child1'; }
+            static get properties() {
+                return {
+                    childProp: {
+                        type: String,
+                        notify: true
+                    }
+                };
+            }
+        }
+
+        window.customElements.define(PclMediatorChild1.is, PclMediatorChild1);
+    </script>
+</dom-module>

@@ -1,0 +1,26 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="pcl-styles.html">
+
+<dom-module id="pcl-mediator-child2">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+
+        <div class="card">
+            <h3>Child 2</h3>
+            <p>Value received from parent element: <br>[[childProp]] </p>
+        </div>
+
+    </template>
+
+    <script>
+        class PclMediatorChild2 extends Polymer.Element {
+            static get is() { return 'pcl-mediator-child2'; }
+        }
+
+        window.customElements.define(PclMediatorChild2.is, PclMediatorChild2);
+    </script>
+</dom-module>

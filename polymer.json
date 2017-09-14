@@ -1,11 +1,12 @@
 {
   "entrypoint": "index.html",
-  "shell": "src/my-app.html",
+  "shell": "src/pcl-app.html",
   "fragments": [
-    "src/my-view1.html",
-    "src/my-view2.html",
-    "src/my-view3.html",
-    "src/my-view404.html"
+    "src/pcl-mediator.html",
+    "src/pcl-view1.html",
+    "src/pcl-view2.html",
+    "src/pcl-view3.html",
+    "src/pcl-view404.html"
   ],
   "sources": [
     "src/**/*",
