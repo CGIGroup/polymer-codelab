@@ -1,12 +1,15 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="pcl-styles.html">
+<link rel="import" href="pcl-sniplet.html">
 
 <dom-module id="pcl-mediator-child1">
     <template>
         <style include="shared-styles">
             :host {
                 display: block;
+
+                min-width: 300px;
             }
         </style>
 
@@ -14,12 +17,14 @@
             <h3>Child 1</h3>
             <paper-input label="childProp" value="{{childProp}}"></paper-input>
             <p>This is how childProp is declared</p>
-            <pre>
-childProp: {
+
+            <pcl-sniplet code=
+'childProp: {
     type: String,
     notify: true //Changes are propagate to the parent
-}
-            </pre>
+}'
+            ></pcl-sniplet>
+            <p>Note that <code>notify: true</code> causes change events to be fired, including to the parent element</p>
         </div>
     </template>
 

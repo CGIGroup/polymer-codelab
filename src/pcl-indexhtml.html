@@ -1,12 +1,7 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
-<link rel="import" href="pcl-sniplet.html">
 <link rel="import" href="pcl-styles.html">
-<link rel="import" href="pcl-mediator-child1.html">
-<link rel="import" href="pcl-mediator-child2.html">
 
-<dom-module id="pcl-mediator">
+<dom-module id="pcl-indexhtml">
     <template>
         <style include="iron-flex iron-flex-alignment iron-positioning"></style>
         <style include="shared-styles">
@@ -15,9 +10,8 @@
             }
         </style>
 
-
         <div class="card">
-            <a href="https://github.com/CGIGroup/polymer-codelab/blob/master/src/pcl-mediator.html" target="_blank">source</a>
+            <a href="https://github.com/CGIGroup/polymer-codelab/blob/master/src/pcl-indexhtml.html" target="_blank">source</a>
             <h2>Mediator Pattern</h2>
             <p>The parent element serves a mediator. The parent element automatically listens for changes to any of the attributes used in child elements, provided
                 they are surrounded by a moustache: "{{ }}".</p>
@@ -25,41 +19,26 @@
                 it first does a 'dirty check'. If the the value has in fact changed, any child elements that happen to
                 be using that attribute get the new value passed to them. This 'Bidirectional Data Binding' is extremely powerful.</p>
             <p>This how our child elements are called:</p>
-
-            <pcl-sniplet code=
-'<pcl-mediator-child1 child-prop="{{childProp} }"></pcl-mediator-child1>
-<pcl-mediator-child2 child-prop="[[childProp] ]"></pcl-mediator-child2>'
-            ></pcl-sniplet>
-
-            <p>Note that:</p>
+            <xmp>
+<pcl-mediator-child1 child-prop="{{childProp} }"></pcl-mediator-child1>
+<pcl-mediator-child2 child-prop="[[childProp] ]"></pcl-mediator-child2>
+            </xmp>
             <ul>
-                <li>The attribute name in HTML is <b>lowercase-hyphenated</b>, whereas the JS name is <b>camelCase</b></li>
+                <li>The attribute name in HTML is lowercase-hyphenated, whereas the JS name is camelCase</li>
                 <li>In the second instance child2, we are using square brackets: "[[ ]]". This is because we don't expect the child
                 to update this value</li>
             </ul>
             <p>Value received from child1: <br>[[childProp]] </p>
         </div>
 
-        <div class="layout horizontal">
-            <pcl-mediator-child1 class="flex" child-prop="{{childProp}}"></pcl-mediator-child1>
-            <pcl-mediator-child2 class="flex" child-prop="[[childProp]]"></pcl-mediator-child2>
-        </div>
-
         <div class="card exercise">
-            <p>Try adding a second variable to child1:</p>
-            <pcl-sniplet code=
- "secondChildProp: {
-    type: String,
-    notify: true, //Changes are propagate to the parent,
-    value: 'secondChildProp value'
-}"
-            ></pcl-sniplet>
+            <p>Try adding an extra variable</p>
         </div>
     </template>
 
     <script>
-        class PclMediator extends Polymer.Element {
-            static get is() { return 'pcl-mediator'; }
+        class PclIndexhtml extends Polymer.Element {
+            static get is() { return 'pcl-indexhtml'; }
             static get properties() {
                 return {
                     childProp: {
@@ -69,6 +48,6 @@
             }
         }
 
-        window.customElements.define(PclMediator.is, PclMediator);
+        window.customElements.define(PclIndexhtml.is, PclIndexhtml);
     </script>
 </dom-module>
