@@ -10,39 +10,39 @@ To work with the Codelab we have to install some tools. This might take
 15 mins. Git uses port 443, so make sure your not behind a firewall.
 From the command prompt:
 
-####Git
+#### Git
 
 See if you have Git installed already: `git --version`. If not, you can install 
 it from here: [Git install](https://git-scm.com/download/win).
 
-####Nodejs
+#### Nodejs
 
 See if you have Nodejs installed already: `npm --version`. If not, you can install 
 it from here: [Nodejs install](https://nodejs.org/en/).
 
 You may have to restart your command prompt for the global installs to tale effect.
 
-####Bower
+#### Bower
 
 See if you have Bower installed already: `bower --version`. If not, you can install 
 it by executing this command:
  
     npm install -g bower
 
-####Polymer CLI
+#### Polymer CLI
 
 See if you have the Polymer CLI installed already: `polymer --version`. If not, you can install 
 it by executing this command:
  
     npm install -g polymer-cli
 
-####Clone the Codelab app
+#### Clone the Codelab app
 
 Execute this command to install the app: 
 
     git clone https://github.com/CGIGroup/polymer-codelab.git
 
-####Start the app
+#### Start the app
 
 Now we can start the Codelab app: 
 
