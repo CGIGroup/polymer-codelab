@@ -18,12 +18,13 @@
 
         <div class="card">
             <a href="https://github.com/CGIGroup/polymer-codelab/blob/master/src/pcl-mediator.html" target="_blank">source</a>
+            <a href="https://www.polymer-project.org/2.0/docs/devguide/data-system" target="_blank">documentation</a>
             <h2>Mediator Pattern</h2>
             <p>The parent element serves a mediator. The parent element automatically listens for changes to any of the attributes used in child elements, provided
                 they are surrounded by a moustache: "{{ }}".</p>
             <p> When he parent is notified of a change to an attribute value,
                 it first does a 'dirty check'. If the the value has in fact changed, any child elements that happen to
-                be using that attribute get the new value passed to them. This 'Bidirectional Data Binding' is extremely powerful.</p>
+                be using that attribute get the new value passed to them. This '<b>Bidirectional Data Binding</b>' is extremely powerful.</p>
             <p>This how our child elements are called:</p>
 
             <pcl-sniplet code=
