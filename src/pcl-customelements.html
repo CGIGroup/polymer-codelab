@@ -1,0 +1,153 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="pcl-sniplet.html">
+<link rel="import" href="pcl-styles.html">
+
+<dom-module id="pcl-customelements">
+    <template>
+        <style include="iron-flex iron-flex-alignment iron-positioning"></style>
+        <style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+
+        <div class="card">
+            <a href="https://github.com/CGIGroup/polymer-codelab/blob/master/src/pcl-customelements.html" target="_blank">source</a>
+            <a href="https://www.polymer-project.org/2.0/docs/devguide/custom-elements" target="_blank">documentation</a>
+            <h2>Custom Elements</h2>
+            <p>This is where the fun begins.</p>
+            <p>Custom elements is how we define our web components. Once defined, they can be use just like any other
+                element: <code>&lth1&gt, &ltimg&gt, &ltp&gt</code> etc. </p>
+            <p>They are true components in the sense that they
+                contain their own style, mark-up and javascript and are completely insulated from their surroundings.
+                The only way to interact with a custom element is through data binding. </p>
+            <p>The custom element structure is similar to ordinary HTML:</p>
+            <pcl-sniplet code=
+'<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<dom-module id="pcl-myelement">
+    <template>
+        <style>
+            Element style...
+        </style>
+        HTML Markup...
+    </template>
+    <script>
+        ES6 Class definition...
+    </script>
+</dom-module>'
+            ></pcl-sniplet></li>
+            <ul>
+                <li><b>HTML Imports</b> Here we import the libraries that we will be using in this element. We always
+                import <code>polymer-element.html</code>
+                <pcl-sniplet code=
+'<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="pcl-sniplet.html">
+<link rel="import" href="pcl-styles.html">'
+                ></pcl-sniplet></li>
+                </li>
+
+                <li><b>dom-module</b> Wraps the entire element. The Id must be identical to the name of the source file.
+                    The id must start with a lower case and contain at least one hyphen.
+                    <pcl-sniplet code='<dom-module id="pcl-customelements">'></pcl-sniplet></li>
+                </li>
+
+                <li><b>style</b> The style tag describes the style for this particular custom element. There is no
+                    leakage to other elements thanks to shadow dom. The style tag should always contain at least:
+                    <pcl-sniplet code=
+'<style>
+    :host {
+        display: block;
+    }
+</style>'
+                    ></pcl-sniplet>
+                    <code>:host</code> refers to this element. For some reason <code>display: block;</code>
+                        is not the default.
+                </li>
+
+                <li><b>HTML mark-up</b> This is where we can start adding elements to our hart's content.
+                    <pcl-sniplet code='<h1>I am doing Polymer.</h1>'></pcl-sniplet></li>
+                </li>
+
+                <li><b>script</b> This is where we define the ES6 class that ties into our custom element.The script
+                    tag must contain at least the following:
+                    <pcl-sniplet code=
+'<script>
+    class PclMyelement extends Polymer.Element {
+        static get is() { return "pcl-myelement"; }
+    }
+    window.customElements.define(PclMyelement.is, PclMyelement);
+</script>'
+                    ></pcl-sniplet>
+                    Note that:
+                    <ul>
+                        <li>The class name starts with upper case and is a camelCase version of the element name.</li>
+                        <li>The way classes are defined has changed with respect to earlier Polymer versions.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card exercise">
+            <p>Lets create a Custom Element. Create a new file in your src directory and call it 
+                <code>pcl-mycustomelement.html</code>. Paste the following code into it:</p>
+            <pcl-sniplet code=
+'<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<dom-module id="pcl-myelement">
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+        
+        <h1>Im a [[iAmA] ].</h1>
+
+    </template>
+
+    <script>
+        class PclMyelement extends Polymer.Element {
+            static get is() { return "pcl-myelement"; }
+
+            static get properties() {
+                return {
+                    iAmA: {
+                        type: String,
+                        value: "Polymer enthusiast"
+                    }
+                };
+            }
+        }
+
+        window.customElements.define(PclMyelement.is, PclMyelement);
+    </script>
+</dom-module>'
+            ></pcl-sniplet>
+            <p>Remove the extra space in <code>[[name] ]</code>. We had to do this to prevent the parser
+                from interpreting the value.</p>
+            <p>To add our element to the app, do the following:</p>
+            <ul>
+                <li>Add the following lines to <code>pcl-app</code> where appropriate.
+                <pcl-sniplet code=
+'<link rel="lazy-import" href="pcl-myelement.html">
+<a name="myelement" href="[[rootPath]]myelement">My Element</a>
+<pcl-myelement name="myelement"></pcl-myelement>'
+                ></pcl-sniplet>
+                </li>
+
+                <li>Add the following line to <code>polymer.json</code> under fragments.
+                    <pcl-sniplet code='"src/pcl-myelement.html",'></pcl-sniplet>
+                </li>
+                TODO: Explain
+            </ul>
+        </div>
+    </template>
+
+    <script>
+        class PclCustomelements extends Polymer.Element {
+            static get is() { return 'pcl-customelements'; }
+        }
+
+        window.customElements.define(PclCustomelements.is, PclCustomelements);
+    </script>
+</dom-module>
