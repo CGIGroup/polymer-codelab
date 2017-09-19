@@ -9,6 +9,10 @@
             :host {
                 display: block;
             }
+            img {
+                float: right;
+                margin: 0 0 10px 10px;
+            }
         </style>
 
         <div class="card">
@@ -16,11 +20,15 @@
             <a href="https://www.polymer-project.org/2.0/docs/devguide/custom-elements" target="_blank">documentation</a>
             <h2>Custom Elements</h2>
             <p>This is where the fun begins.</p>
-            <p>Custom elements is how we define our web components. Once defined, they can be use just like any other
-                element: <code>&lth1&gt, &ltimg&gt, &ltp&gt</code> etc. </p>
+            <p>Custom elements is how we define our web components. Once defined, they can be use just like ordinary
+                HTML elements such as: <code>&lth1&gt, &ltimg&gt, &ltp&gt</code> etc. </p>
+
+            <img src="../images/custom-elements.svg"  width="300">
             <p>They are true components in the sense that they
                 contain their own style, mark-up and javascript and are completely insulated from their surroundings.
-                The only way to interact with a custom element is through data binding. </p>
+                The only way to interact with a custom element is through data binding a events. </p>
+            <div style="clear: both;"></div>
+
             <p>The custom element structure is similar to ordinary HTML:</p>
             <pcl-sniplet code=
 '<link rel="import" href="../bower_components/polymer/polymer-element.html">
@@ -89,7 +97,7 @@
 
         <div class="card exercise">
             <p>Lets create a Custom Element. Create a new file in your src directory and call it 
-                <code>pcl-mycustomelement.html</code>. Paste the following code into it:</p>
+                <code>pcl-myelement.html</code>. Paste the following code into it:</p>
             <pcl-sniplet code=
 '<link rel="import" href="../bower_components/polymer/polymer-element.html">
 

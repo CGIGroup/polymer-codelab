@@ -1,0 +1,78 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="pcl-sniplet.html">
+<link rel="import" href="pcl-styles.html">
+
+<dom-module id="pcl-declareproperties">
+    <template>
+        <style include="iron-flex iron-flex-alignment iron-positioning"></style>
+        <style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+
+        <div class="card">
+            <a href="https://github.com/CGIGroup/polymer-codelab/blob/master/src/pcl-declareproperties.html" target="_blank">source</a>
+            <a href="https://www.polymer-project.org/2.0/docs/devguide/properties" target="_blank">Dev Guide Declare Properties</a>
+            <h2>Declare Properties</h2>
+            <p>When you generate an app using the Polymer CLI, an index.html is generated for you. It serves as the entrypoint
+            for your application.</p>
+            <p>Most of it is boilerplate, so for the most part, leave it alone. index,.html does the following things for you:</p>
+            <ul>
+                <li>In the header tag we see some initialization and icon definitions for the various platforms.
+                Don't worry about the icons until your project is nearly done. (Make sure they're on the backlog)</li>
+                <li>In the first script tag we see initialization of the Service Worker. The Service Worker is a task
+                that runs in your browser (not in your app), that takes care of caching and lazy loading of pages, so that
+                your users get really snappy page rendering. The Service Worker is defined in <code>sw-precache-config.js</code>
+                and is generated during the build, so it won't take effect until you serve a built version of your app.
+                <pcl-sniplet code=
+"navigator.serviceWorker.register('service-worker.js', {
+    scope: Polymer.rootPath,
+});"
+                ></pcl-sniplet></li>
+                <li>In the second script tag we see a call to <code>webcomponents-loader.js</code>. This where polyfills
+                    get loaded, depending on how up-to-date your browser is.
+                <pcl-sniplet code=
+'<!-- Load webcomponents-loader.js to check and load any polyfills your browser needs -->
+<script src="bower_components/webcomponentsjs/webcomponents-loader.js"></script>'
+                ></pcl-sniplet>
+                    Polyfills give browser vendors time to catch-up with regard to web components and custom elements (or in the
+                    case of IE11, give-up). It is expected that over time polyfills will disappear.
+                </li>
+                <li>Some global styling</li>
+                <li>Finally the body tag, which includes our app tag.
+                    <pcl-sniplet code=
+'<body>
+    <pcl-app></pcl-app>
+    <noscript>
+      Please enable JavaScript to view this website.
+    </noscript>
+    <!-- Built with love using Polymer Starter Kit -->
+</body>'
+                    ></pcl-sniplet>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card exercise">
+            <p>Try updating the title and the description of the app:</p>
+            <pcl-sniplet code=
+'<title>CGI Polymer Codelabs</title>
+<meta name="description" content="Truly awesome, mostly harmless, CGI Polymer Codelab.">'
+            ></pcl-sniplet>
+            <p>Note that:</p>
+            <ul>
+                <li>The title of your app has now changed in the browser tab.</li>
+                <li>The description should show-up in search engines.</li>
+            </ul>
+        </div>
+    </template>
+
+    <script>
+        class PclDeclareproperties extends Polymer.Element {
+            static get is() { return 'pcl-declareproperties'; }
+        }
+
+        window.customElements.define(PclDeclareproperties.is, PclDeclareproperties);
+    </script>
+</dom-module>
