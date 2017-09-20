@@ -16,22 +16,26 @@
         </style>
 
         <div class="card">
-            <a href="https://github.com/CGIGroup/polymer-codelab/blob/master/src/pcl-customelements.html" target="_blank">source</a>
-            <a href="https://www.polymer-project.org/2.0/docs/devguide/custom-elements" target="_blank">documentation</a>
+            <a href="https://github.com/CGIGroup/polymer-codelab/blob/master/src/pcl-customelements.html" target="_blank">pcl-customelements.html</a>
+            <a href="https://www.polymer-project.org/2.0/docs/devguide/custom-elements" target="_blank">DevGuide: Data system concepts</a>
             <h2>Custom Elements</h2>
             <p>This is where the fun begins.</p>
             <p>Custom elements is how we define our web components. Once defined, they can be use just like ordinary
                 HTML elements such as: <code>&lth1&gt, &ltimg&gt, &ltp&gt</code> etc. </p>
 
-            <img src="../images/custom-elements.svg"  width="300">
+            <img class="card" src="../images/custom-elements.svg"  width="300">
             <p>They are true components in the sense that they
                 contain their own style, mark-up and javascript and are completely insulated from their surroundings.
                 The only way to interact with a custom element is through data binding a events. </p>
+            <p>One of the great things about Polymer is that is allows us to define a JavaScript Class that ties in to
+            our custom element, so we get all the greatness that JavaScript provides.</p>
+
             <div style="clear: both;"></div>
 
             <p>The custom element structure is similar to ordinary HTML:</p>
             <pcl-sniplet code=
 '<link rel="import" href="../bower_components/polymer/polymer-element.html">
+Other imports...
 <dom-module id="pcl-myelement">
     <template>
         <style>
@@ -45,7 +49,7 @@
 </dom-module>'
             ></pcl-sniplet></li>
             <ul>
-                <li><b>HTML Imports</b> Here we import the libraries that we will be using in this element. We always
+                <li class="bottom-margin"><b>HTML Imports</b> Here we import the libraries that we will be using in this element. We always
                 import <code>polymer-element.html</code>
                 <pcl-sniplet code=
 '<link rel="import" href="../bower_components/polymer/polymer-element.html">
@@ -54,12 +58,12 @@
                 ></pcl-sniplet></li>
                 </li>
 
-                <li><b>dom-module</b> Wraps the entire element. The Id must be identical to the name of the source file.
+                <li class="bottom-margin"><b>dom-module</b> Wraps the entire element. The Id must be identical to the name of the source file.
                     The id must start with a lower case and contain at least one hyphen.
                     <pcl-sniplet code='<dom-module id="pcl-customelements">'></pcl-sniplet></li>
                 </li>
 
-                <li><b>style</b> The style tag describes the style for this particular custom element. There is no
+                <li class="bottom-margin"><b>style</b> The style tag describes the style for this particular custom element. There is no
                     leakage to other elements thanks to shadow dom. The style tag should always contain at least:
                     <pcl-sniplet code=
 '<style>
@@ -72,11 +76,11 @@
                         is not the default.
                 </li>
 
-                <li><b>HTML mark-up</b> This is where we can start adding elements to our hart's content.
+                <li class="bottom-margin"><b>HTML mark-up</b> This is where we can start adding elements to our hart's content.
                     <pcl-sniplet code='<h1>I am doing Polymer.</h1>'></pcl-sniplet></li>
                 </li>
 
-                <li><b>script</b> This is where we define the ES6 class that ties into our custom element.The script
+                <li class="bottom-margin"><b>script</b> This is where we define the ES6 class that ties into our custom element.The script
                     tag must contain at least the following:
                     <pcl-sniplet code=
 '<script>
