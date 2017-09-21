@@ -35,13 +35,19 @@
                     it first does a 'dirty check'. If the the value has in fact changed, any child elements that happen to
                     be using that attribute get the new value passed to them. This <b>Bidirectional Data Binding</b> is extremely powerful.</p>
             </div>
-
             <p>There are two kinds of Bindings.</p>
             <ul>
-            <li> Property binding: <code>&ltmy-element my-property="{{hostProperty} }"></code></li>
+                <li>Property binding: <br><code>&ltmy-element my-property="{{hostProperty} }"></code><br>Used in
+                passing data to child elements. Note that the attribute name in HTML is <b>lowercase-hyphenated</b>, whereas the JS name is <b>camelCase</b></li>
+                <li>Attribute binding: <br><code>&lta href$="{{hostProperty} }"></code><br>Note the "$".
+                This is extremely useful for dynamically setting things like css class, hidden etc.</li>
             </ul>
-
-
+            <p>Bindings can be one-way or bidirectional.</p>
+            <ul>
+                <li>Double-curly brackets <code>{{ }}</code> support both upward and downward data flow.</li>
+                <li>Double square brackets <code>[[ ]]</code> are one-way, and support only downward data flow</li>
+            </ul>
+TODO Logical not operator, Computed bindings
             <div style="clear: both;"></div>
             <p>This how our child elements are called:</p>
 
@@ -50,12 +56,8 @@
 <pcl-mediator-child2 child-prop="[[childProp] ]"></pcl-mediator-child2>'
             ></pcl-sniplet>
 
-            <p>Note that:</p>
-            <ul>
-                <li>The attribute name in HTML is <b>lowercase-hyphenated</b>, whereas the JS name is <b>camelCase</b></li>
-                <li>In the second instance child2, we are using square brackets: "[[ ]]". This is because we don't expect the child
-                    to update this value</li>
-            </ul>
+            <p>Note that in the second instance: child2, we are using square brackets: "[[ ]]". This is because we don't
+                expect the child to update this value</p>
             <p>Value received from child1: <br>[[childProp]] </p>
         </div>
 
