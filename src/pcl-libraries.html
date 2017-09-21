@@ -33,16 +33,37 @@
         </div>
 
         <div class="card exercise">
-            <p>Lets add a Google map ro our myelement</p>
-            <pcl-sniplet code=
-'<title>CGI Polymer Codelabs</title>
-<meta name="description" content="Truly awesome, mostly harmless, CGI Polymer Codelab.">'
+            <p>Lets add a Google map to our myelement. This exercise assumes you have a Google account.</p>
+            <p>To begin with we'll add two components to our project. Go to
+                <a href="https://www.webcomponents.org/element/GoogleWebComponents/google-map" target="_blank">google-map</a>
+                and click on <b>Bower</b> in the top left corner to copy the install statement. Go to your command prompt,
+                paste the statement and execute the install.</p>
+            <p>Do the same for
+                <a href="https://www.webcomponents.org/element/ebidel/geo-location" target="_blank">geo-location</a></p>
+
+            <p>Now we can add these elements to our <code>pcl-myelement.html</code> by adding the following lines of code:</p>
+            <pcl-sniplet lang="html" code=
+'Import the libraries:
+<link rel="import" href="../bower_components/google-map/google-map.html">
+<link rel="import" href="../bower_components/geo-location/geo-location.html">
+
+Give a map a height by inserting the following under the style tag:
+google-map {
+    height: 600px;
+}
+
+Now add the elements, after the style tag:
+<geo-location latitude="{{lat} }" longitude="{{lng} }"></geo-location>
+<google-map map="{{map}}" latitude="[[lat] ]" longitude="[[lng] ] "api-key="My_Api_Key">
+	<google-map-marker latitude="[[lat] ]" longitude="[[lng] ]"></google-map-marker>
+</google-map>'
             ></pcl-sniplet>
-            <p>Note that:</p>
-            <ul>
-                <li>The title of your app has now changed in the browser tab.</li>
-                <li>The description should show-up in search engines.</li>
-            </ul>
+
+            <p>Remove the extra spaces in the bindings!</p>
+            <p>Finally we have to get ourselves have to get ourselves a Google Map API-key. Go to
+                <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">Get API Key</a>
+                and click on "Get a Key", create a new project called "polymer-codelab" and click "Create and enable API".
+                Copy the API key to your clipbord. Now paste this key into the appropriate field in your code: <code>My_Api_Key</code></p>
         </div>
     </template>
 
