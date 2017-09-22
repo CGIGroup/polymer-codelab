@@ -19,8 +19,7 @@
     "marked-element": "PolymerElements/marked-element#^2.3.0",
     "prism-element": "PolymerElements/prism-element#^2.0.1",
     "paper-tree": "vpusher/paper-tree#^1.0.3",
-    "google-map": "GoogleWebComponents/google-map#^2.0.2",
-    "geo-location": "ebidel/geo-location#^2.0.1"
+    "iron-ajax": "PolymerElements/iron-ajax#^2.0.5"
   },
   "resolutions": {
     "polymer": "^2.0.0",

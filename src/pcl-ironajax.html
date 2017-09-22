@@ -13,44 +13,26 @@
 
         <div class="card">
             <a href="https://github.com/CGIGroup/polymer-codelab/blob/master/src/pcl-ironajax.html" target="_blank">source</a>
-            <a href="https://www.webcomponents.org/element/PolymerElements/iron-ajax" target="_blank">documentation</a>
+            <a href="https://www.webcomponents.org/element/PolymerElements/iron-ajax" target="_blank">iron-ajax</a>
             <h2>Iron Ajax</h2>
-            <p>When you generate an app using the Polymer CLI, an index.html is generated for you. It serves as the entrypoint
-            for your application.</p>
-            <p>Most of it is boilerplate, so for the most part, leave it alone. index,.html does the following things for you:</p>
+            <p>Iron Ajax is Polymer's encapsulation of ajax calls, to and from our server. Its usage is remarkably straight forward.</p>
+            <pcl-sniplet lang="html" code=
+'<iron-ajax
+    auto
+    url="https://www.googleapis.com/youtube/v3/search"
+    params="{"part":"snippet", "q":"polymer", "key": "YOUTUBE_API_KEY", "type": "video"}"
+    handle-as="json"
+    on-response="handleResponse"
+    debounce-duration="300"></iron-ajax>'
+            ></pcl-sniplet></li>
+
+            <p>Note the following:</p>
             <ul>
-                <li>In the header tag we see some initialization and icon definitions for the various platforms.
-                Don't worry about the icons until your project is nearly done. (Make sure they're on the backlog)</li>
-                <li>In the first script tag we see initialization of the Service Worker. The Service Worker is a task
-                that runs in your browser (not in your app), that takes care of caching and lazy loading of pages, so that
-                your users get really snappy page rendering. The Service Worker is defined in <code>sw-precache-config.js</code>
-                and is generated during the build, so it won't take effect until you serve a built version of your app.
-                <pcl-sniplet code=
-"navigator.serviceWorker.register('service-worker.js', {
-    scope: Polymer.rootPath,
-});"
-                ></pcl-sniplet></li>
-                <li>In the second script tag we see a call to <code>webcomponents-loader.js</code>. This where polyfills
-                    get loaded, depending on how up-to-date your browser is.
-                <pcl-sniplet code=
-'<!-- Load webcomponents-loader.js to check and load any polyfills your browser needs -->
-<script src="bower_components/webcomponentsjs/webcomponents-loader.js"></script>'
-                ></pcl-sniplet>
-                    Polyfills give browser vendors time to catch-up with regard to web components and custom elements (or in the
-                    case of IE11, give-up). It is expected that over time polyfills will disappear.
-                </li>
-                <li>Some global styling</li>
-                <li>Finally the body tag, which includes our app tag.
-                    <pcl-sniplet code=
-'<body>
-    <pcl-app></pcl-app>
-    <noscript>
-      Please enable JavaScript to view this website.
-    </noscript>
-    <!-- Built with love using Polymer Starter Kit -->
-</body>'
-                    ></pcl-sniplet>
-                </li>
+                <li><b>auto</b> An ajax request will automatically be sent whenever url, param or body change.</li>
+                <li><b>debounce-duration</b> When any of the parameters change, iron-ajax will wait 0.3 of a second to allow JavaScript
+                to update any other parameters before sending an ajax call.</li>
+                <li><b>params, body</b> You can either send params or a body to the server. They are both sent as stringified JSON.</li>
+
             </ul>
         </div>
 
