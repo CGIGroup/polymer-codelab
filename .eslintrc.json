@@ -14,7 +14,9 @@
     "new-cap": ["error", { "capIsNewExceptions": ["Polymer"] }],
     "no-var": "off",
     "require-jsdoc": "off",
-    "linebreak-style": ["error", "windows"]
+    "comma-dangle": ["error", "never"],
+    "linebreak-style": ["error", "unix"]
+    //"linebreak-style": 0
   },
   "globals": {
     "Polymer": true

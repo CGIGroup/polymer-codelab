@@ -18,6 +18,12 @@
                 float: right;
                 margin: 0 0 10px 10px;
                 width:400px;
+                background-color: #fff9bd;
+            }
+            .imgInset{
+                float: right;
+                width: 125px;
+                min-width: 125px;
             }
         </style>
 
@@ -31,6 +37,7 @@
                 <h4>The Mediator Pattern</h4>
                 <p>The parent element serves a mediator. The parent element automatically listens for changes to any of
                     the attributes used in child elements, provided they are surrounded by curly brackets or, moustache: "{{ }}".</p>
+                <img class="card imgInset" src="../images/custom-elements.svg">
                 <p> When he parent is notified of a change to an attribute value,
                     it first does a 'dirty check'. If the the value has in fact changed, any child elements that happen to
                     be using that attribute get the new value passed to them. This <b>Bidirectional Data Binding</b> is extremely powerful.</p>

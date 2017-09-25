@@ -38,6 +38,11 @@
                     childProp: {
                         type: String,
                         notify: true
+                    },
+                    secondChildProp: {
+                        type: String,
+                        notify: true, //Changes are propagate to the parent,
+                        value: 'secondChildProp value'
                     }
                 };
             }

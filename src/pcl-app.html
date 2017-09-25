@@ -20,8 +20,10 @@
 <link rel="lazy-import" href="pcl-databinding.html">
 <link rel="lazy-import" href="pcl-libraries.html">
 <link rel="lazy-import" href="pcl-ironajax.html">
-<link rel="lazy-import" href="pcl-domrepeat.html">
+<link rel="lazy-import" href="pcl-templates.html">
+<link rel="lazy-import" href="pcl-events.html">
 <link rel="lazy-import" href="pcl-style.html">
+<link rel="lazy-import" href="pcl-documenting.html">
 <link rel="lazy-import" href="pcl-flexbox.html">
 
 <dom-module id="pcl-app">
@@ -75,8 +77,9 @@
         <app-drawer-layout fullbleed narrow="{{narrow}}">
             <!-- Drawer content -->
             <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
-                <app-toolbar>Menu</app-toolbar>
+                <!--<app-toolbar>Menu</app-toolbar>-->
                 <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+                    <a name="intro" href="[[rootPath]]intro">Introduction</a>
                     <a name="indexhtml" href="[[rootPath]]indexhtml">index.html</a>
                     <a name="customelements" href="[[rootPath]]customelements">Custom Elements</a>
                     <a name="myelement" href="[[rootPath]]myelement">My Element</a>
@@ -84,9 +87,17 @@
                     <a name="databinding" href="[[rootPath]]databinding">Data Binding</a>
                     <a name="libraries" href="[[rootPath]]libraries">Libraries</a>
                     <a name="ironajax" href="[[rootPath]]ironajax">Iron Ajax</a>
-                    <a name="domrepeat" href="[[rootPath]]domrepeat">dom-if, dom-repeat</a>
+                    <a name="templates" href="[[rootPath]]templates">Templates</a>
+                    <a name="events" href="[[rootPath]]events">Events</a>
                     <a name="style" href="[[rootPath]]style">Style</a>
                     <a name="flexbox" href="[[rootPath]]flexbox">Flexbox</a>
+                    <a name="documenting" href="[[rootPath]]documenting">Documenting</a>
+                    <a name="build" href="[[rootPath]]build">Build</a>
+                    <a name="test" href="[[rootPath]]test">Unit Test</a>
+                    <a name="statemanagment" href="[[rootPath]]redux">State Management</a>
+                    <a name="polymering" href="[[rootPath]]polymering">Polymer at ING</a>
+                    <a name="challenge" href="[[rootPath]]challenge">Challenge</a>
+                    <a name="resources" href="[[rootPath]]resources">Resources</a>
                 </iron-selector>
             </app-drawer>
 
@@ -105,6 +116,7 @@
                         attr-for-selected="name"
                         fallback-selection="view404"
                         role="main">
+                    <pcl-intro name="intro"></pcl-intro>
                     <pcl-indexhtml name="indexhtml"></pcl-indexhtml>
                     <pcl-customelements name="customelements"></pcl-customelements>
                     <pcl-myelement name="myelement"></pcl-myelement>
@@ -112,9 +124,11 @@
                     <pcl-declareproperties name="declareproperties"></pcl-declareproperties>
                     <pcl-libraries name="libraries"></pcl-libraries>
                     <pcl-ironajax name="ironajax"></pcl-ironajax>
-                    <pcl-domrepeat name="domrepeat"></pcl-domrepeat>
+                    <pcl-templates name="templates"></pcl-templates>
+                    <pcl-events name="events"></pcl-events>
                     <pcl-style name="style"></pcl-style>
                     <pcl-flexbox name="flexbox"></pcl-flexbox>
+                    <pcl-documenting name="documenting"></pcl-documenting>
                     <pcl-view404 name="view404"></pcl-view404>
                 </iron-pages>
             </app-header-layout>

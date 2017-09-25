@@ -17,10 +17,10 @@
             <h2>Iron Ajax</h2>
             <p>Iron Ajax is Polymer's encapsulation of ajax calls, to and from our server. Its usage is remarkably straight forward.</p>
             <pcl-sniplet lang="html" code=
-'<iron-ajax
+' <iron-ajax
     auto
-    url="https://www.googleapis.com/youtube/v3/search"
-    params="{"part":"snippet", "q":"polymer", "key": "YOUTUBE_API_KEY", "type": "video"}"
+    url="https://api.coinmarketcap.com/v1/ticker/"
+    params="{"limit": "10"}"
     handle-as="json"
     on-response="handleResponse"
     debounce-duration="300"></iron-ajax>'
@@ -28,24 +28,53 @@
 
             <p>Note the following:</p>
             <ul>
-                <li><b>auto</b> An ajax request will automatically be sent whenever url, param or body change.</li>
+                <li><b>auto</b> An ajax request will automatically be sent whenever <code>url, params or body</code> change.</li>
                 <li><b>debounce-duration</b> When any of the parameters change, iron-ajax will wait 0.3 of a second to allow JavaScript
                 to update any other parameters before sending an ajax call.</li>
-                <li><b>params, body</b> You can either send params or a body to the server. They are both sent as stringified JSON.</li>
+                <li><b>params, body</b> You can either send params or a body to the server. They are both sent as stringified JSON.
+                    Note: The params attribute must be double quoted JSON.</li>
+                <li><b>handel-as</b> One of: <code>text, xml, json, arraybuffer, blob or document </code></li>
+                <li><b>on-response</b> This function will be called on response code 200.</li>
+                <li><b>on-error</b> This function will be called on response code != 200.</li>
+                <li><b>method</b> The HTTP method to use such as <code>GET, POST, PUT, or DELETE</code>. Default is GET.</li>
 
             </ul>
         </div>
 
         <div class="card exercise">
-            <p>Try updating the title and the description of the app:</p>
+            <p>Lets add some iron-ajax to <code>pcl-myelement.html</code></p>
             <pcl-sniplet code=
-'<title>CGI Polymer Codelabs</title>
-<meta name="description" content="Truly awesome, mostly harmless, CGI Polymer Codelab.">'
+'Import the libraries:
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+
+Add the following markup:
+<iron-ajax
+    auto
+    url="https://api.coinmarketcap.com/v1/ticker/"
+    params="{"limit": "10"}"
+    handle-as="json"
+    on-response="handleResponse"
+    debounce-duration="300"></iron-ajax>
+
+<pre>[[stringify(resp)] ]</pre>
+
+Finally, add the following functions:
+handleResponse(){
+    this.resp = event.detail.xhr.response;
+}
+stringify(obj){
+    return JSON.stringify(obj, null, 4);
+}
+'
             ></pcl-sniplet>
+            <p>Change the outer double quotes of <code>params</code> to single quotes: <code>'{"limit": "10"}'</code>!</p>
+            <p>Remove the extra space in the binding <code>[[stringify(resp)] ]</code>!</p>
             <p>Note that:</p>
             <ul>
-                <li>The title of your app has now changed in the browser tab.</li>
-                <li>The description should show-up in search engines.</li>
+                <li><code>handelResponse</code> is where we process the server response. The response has already been parsed
+                    to a JS object thanks to <code>handle-as="json"</code></li>
+                <li><code>stringify</code> simply makes a string representation of the response, that we can then display
+                    in the <code>&ltpre></code> tag.</li>
             </ul>
         </div>
     </template>

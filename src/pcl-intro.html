@@ -1,0 +1,139 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/google-youtube/google-youtube.html">
+<link rel="import" href="pcl-sniplet.html">
+<link rel="import" href="pcl-styles.html">
+
+<dom-module id="pcl-intro">
+    <template>
+        <style include="iron-flex iron-flex-alignment iron-positioning"></style>
+        <style include="shared-styles">
+            :host {
+                display: block;
+            }
+            .inset{
+                float: right;
+                margin: 0 0 10px 10px;
+                width:500px;
+                background-color: #fff9bd;
+                font-size: 80%;
+            }
+        </style>
+
+        <div class="card">
+            <a href="https://www.polymer-project.org/" target="_blank">Polymer Project</a>
+            <h2>Introduction</h2>
+            <h3>Web Components</h3>
+            <p>What is all the fuss about?</p>
+
+            <p><a href="https://en.wikipedia.org/wiki/Web_Components" target="_blank">Web Components</a>
+                are a set of features currently being added by the W3C to the HTML and DOM specifications that allow
+                for the creation of reusable widgets or components in web documents and web applications. The intention
+                behind them is to bring component-based software engineering to the World Wide Web. The components
+                model allows for encapsulation and interoperability of individual HTML elements.
+                Web Components consist of 4 main features which can be used separately or all together:</p>
+
+            <ul>
+                <li><b>Custom Elements</b> APIs to define new HTML elements</li>
+                <li><b>Shadow DOM</b> Encapsulated DOM and styling, with composition</li>
+                <li><b>HTML Imports</b> Declarative methods of importing HTML documents into other documents</li>
+                <li
+                ><b>HTML Templates</b> The <code>&lttemplate></code> tag, which allows documents to contain inert chunks of DOM</li>
+            </ul>
+            <div class="card inset">
+                <h4>What's different?</h4>
+                <ul>
+                    <li>Supported by all major browser vendors</li>
+                    <li>Looks and behaves the same on every platform write once run anywhere. Finally!</li>
+                    <li>Apps run in the browser and take advantage of browser API use the platform!</li>
+                    <li>Polyfill takes care of browsers that don’t yet support full-fledged web components</li>
+                    <li>No longer necessary to write separate apps for every platform/OS say goodbye to the app store</li>
+                    <li>Components are easier to test</li>
+                </ul>
+            </div>
+            <div style="clear: both;"></div>
+
+            <h3>Polymer</h3>
+            <p><a href="https://en.wikipedia.org/wiki/Polymer_(library)" target="_blank">Polymer</a> is an open-source JavaScript library for building web applications using Web Components. The library is being developed by Google developers and contributors on GitHub. Modern design principles are implemented as a separate project using Google's Material Design design principles.</p>
+
+            <ul>
+                <li>Open Source, maintained by Google</li>
+                <li>Built on Web Components</li>
+                <li>Goal: Progressive Web Apps</li>
+                <li>tl;dr: How do you get a browser app to look and behave like a native app?</li>
+            </ul>
+
+            <div class="card inset">
+                <h4>Progressive Web Apps</h4>
+                <ul>
+                    <li>Progressive - Work for every user, regardless of browser choice because they’re built with progressive enhancement as a core tenet.</li>
+                    <li>Responsive - Fit any form factor: desktop, mobile, tablet, or forms yet to emerge.</li>
+                    <li>Connectivity independent - Service workers allow work offline, or on low quality networks.</li>
+                    <li>App-like - Feel like an app to the user with app-style interactions and navigation.</li>
+                    <li>Fresh - Always up-to-date thanks to the service worker update process.</li>
+                    <li>Safe - Served via HTTPS to prevent snooping and ensure content hasn’t been tampered with.</li>
+                    <li>Discoverable - Are identifiable as “applications” thanks to W3C manifests and service worker registration scope allowing search engines to find them.</li>
+                    <li>Re-engageable - Make re-engagement easy through features like push notifications.</li>
+                    <li>Installable - Allow users to “keep” apps they find most useful on their home screen without the hassle of an app store.</li>
+                    <li>Linkable - Easily shared via a URL and do not require complex installation.</li>
+                </ul>
+                <p>Frances Berriman and Alex Russell 2015</p>
+            </div>
+
+            <div style="clear: both;"></div>
+
+            <h3>Examples</h3>
+            <ul>
+                <li><a href="https://shop.polymer-project.org/" target="_blank">Shop</a>: A Polymer / Material Design showcase provided by Google.</li>
+                <li><a href="https://dhlapp-29433.firebaseapp.com/" target="_blank">DHLApp</a>: A POC that demonstrates
+                    Offline Capability, Barcode Scanner, Hand Signature and SOAP XML communication, using Redux for state management.</li>
+                <li><a href="https://home-assistant.io/demo/" target="_blank">Home Assistant</a>: Home Assistant is an open-source home automation platform running on Python 3. Track and control all devices at home and automate control.</li>
+            </ul>
+
+            <h3>Polymer Starter Kit</h3>
+            <p>The Polymer CLI comes equipped with a starter kit that will help you create awesome apps. Create a new project
+                directory and issue the following command: <code>polymer init</code> The starter kit will present the following options:</p>
+            <pcl-sniplet code=
+'? Which starter template would you like to use?
+polymer-2-element - A simple Polymer 2.0 element template
+polymer-2-application - A simple Polymer 2.0 application
+> polymer-2-starter-kit - A Polymer 2.x starter application template, with navigation and "PRPL pattern" loading
+shop - The "Shop" Progressive Web App demo'
+            ></pcl-sniplet>
+
+            <p>When creating a new app, the third option <code>polymer-2-starter-kit</code> is the one to select.
+            It comes equipped with all the Polymer / Material Design / PWA goodies. The Polymer Codelab is based on the
+            stater kit.</p>
+            <p>The forth option <code>shop</code> will generate the Shop showcase we saw above.</p>
+
+            <h3>Material Design</h3>
+            <p>tl;dr: <a href="https://material.io/" target="_blank">Material Design</a>
+                can be thought of as a design philosophy where UI elements resemble pieces of paper that slide over
+            one another as the user interacts with them.</p>
+
+            <p>Checkout this introduction <a href="https://material.io/guidelines/material-design/introduction.html" target="_blank">Material Design Introduction</a>,
+            or this video:</p>
+
+            <google-youtube style="float:right;"
+                    video-id="VqJm8Xqgmq8"
+                    rel="0"
+                    showInfo="1">
+            </google-youtube>
+
+
+            <div style="clear: both;"></div>
+
+            <h3>Resources</h3>
+            <ul>
+                <li><a href="https://meowni.ca/posts/polymer-2-cheatsheet/" target="_blank">Polymer 2.x Cheat Sheet</a></li>
+            </ul>
+        </div>
+    </template>
+
+    <script>
+        class PclIntro extends Polymer.Element {
+            static get is() { return 'pcl-intro'; }
+        }
+
+        window.customElements.define(PclIntro.is, PclIntro);
+    </script>
+</dom-module>

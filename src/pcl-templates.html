@@ -1,0 +1,74 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="pcl-sniplet.html">
+<link rel="import" href="pcl-styles.html">
+
+<dom-module id="pcl-templates">
+    <template>
+        <style include="iron-flex iron-flex-alignment iron-positioning"></style>
+        <style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+
+        <div class="card">
+            <a href="https://www.polymer-project.org/2.0/docs/devguide/templates" target="_blank">DevGuide: Data binding helper elements</a>
+            <h2>Templates</h2>
+            <p>Polymer provides a set of custom elements to help with common data binding use cases:</p>
+            <ul>
+                <li>Template repeater (dom-repeat). Creates an instance of the template's contents for each item in an array.</li>
+                <li>Array selector. Manages selection state for an array of structured data.</li>
+                <li>Conditional template (dom-if). Stamps its contents if a given condition is true.</li>
+                <li>Auto-binding template (dom-bind). Allows data binding outside of a Polymer element.</li>
+            </ul>
+            <h3>dom-repeat</h3>
+            <p>The template repeater is a specialized template that binds to an array. It creates one instance of the template's contents for each item in the array. For each instance, it creates a new data binding scope that includes the following properties:</p>
+            <ul>
+                <li><code>item</code> The array item used to create this instance.</li>
+                <li><code>index</code> The index of item in the array. (The index value changes if the array is sorted or filtered)</li>
+            </ul>
+            <pcl-sniplet code=
+'<template is="dom-repeat" items="{{employees}}">
+    <div># [[index] ]</div>
+    <div>First name: <span>[[item.first] ]</span></div>
+    <div>Last name: <span>[[item.last] ]</span></div>
+</template>'></pcl-sniplet>
+            <h3>dom-if</h3>
+            <p>dom-if stamps itself conditionally based on a property’s value:</p>
+            <pcl-sniplet code=
+ '<template is="dom-if" if="[[myProperty] ]">
+    <span>This content will appear when myProperty is truthy.</span>
+</template>'></pcl-sniplet>
+        </div>
+
+        <div class="card exercise">
+            <p>Lets add a dom-repeat template to our <code>pcl-myelement.html</code></p>
+            <pcl-sniplet code=
+'Add the following markup:
+<template is="dom-repeat" items="[[resp] ]" sort="sortByName">
+    <div># [[index] ]</div>
+    <div>Name: <span>[[item.name] ]</span></div>
+    <div>Symbol: <span>[[item.symbol] ]</span></div>
+    <div>Price USD: <span>[[item.price_usd] ]</span></div>
+    <div>Market cap USD: <span>[[item.market_cap_usd] ]</span></div>
+</template>
+
+And the following sort function:
+sortByName(v1, v2) {
+    var val1 = v1.name, val2 = v2.name;
+    if (val1 == val2) return 0;
+    if (val1 > val2) return 1;
+    if (val1 < val2) return -1;
+}'></pcl-sniplet>
+            <p>Remove the extra spaces in the bindings!</p>
+        </div>
+    </template>
+
+    <script>
+        class PclTemplates extends Polymer.Element {
+            static get is() { return 'pcl-templates'; }
+        }
+
+        window.customElements.define(PclTemplates.is, PclTemplates);
+    </script>
+</dom-module>
