@@ -1,6 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="pcl-sniplet.html">
-<link rel="import" href="pcl-styles.html">
+<link rel="import" href="pcl-shared-styles.html">
 
 <dom-module id="pcl-declareproperties">
     <template>
@@ -12,17 +12,12 @@
         </style>
 
         <div class="card">
-            <a href="https://github.com/CGIGroup/polymer-codelab/blob/master/src/pcl-declareproperties.html" target="_blank">pcl-declareproperties.html</a>
             <a href="https://www.polymer-project.org/2.0/docs/devguide/properties" target="_blank">DevGuide: Declare Properties</a>
             <h2>Declare Properties</h2>
-            <p>Properties are in effect the variables that you element works with. Polymer does not require you to declare properties.
-            However there are a couple of reasons for doing so anyway.</p>
+            <p>Properties are in effect the variables that you element works with. Polymer does not require you to declare properties. However there are a couple of reasons for doing so anyway.</p>
             <ol>
-                <li>If the property is part of your element's public API, it should be declared should so that
-                    consumers know which values can be passed to your custom element. There should also be a comment
-                    describing it's purpose.</li>
-                <li>If you want to define certain aspects such as the type, the initial value, observers etc.
-                    Declared properties can specify:
+                <li>If the property is part of your element's public API, it should be declared should so that consumers know which values can be passed to your custom element. There should also be a comment describing it's purpose.</li>
+                <li>If you want to define certain aspects such as the type, the initial value, observers etc. Declared properties can specify:
                     <ul>
                         <li>Property type: <code>Boolean, Date, Number, String, Array or Object</code></li>
                         <li>Default value: <code>boolean, number, string or function</code></li>

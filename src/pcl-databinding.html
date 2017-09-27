@@ -2,7 +2,7 @@
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="pcl-sniplet.html">
-<link rel="import" href="pcl-styles.html">
+<link rel="import" href="pcl-shared-styles.html">
 <link rel="import" href="pcl-mediator-child1.html">
 <link rel="import" href="pcl-mediator-child2.html">
 
@@ -28,26 +28,20 @@
         </style>
 
         <div class="card">
-            <a href="https://github.com/CGIGroup/polymer-codelab/blob/master/src/pcl-databinding.html" target="_blank">pcl-databinding.html</a>
             <a href="https://www.polymer-project.org/2.0/docs/devguide/data-binding" target="_blank">DevGuide: Data binding</a>
             <h2>Data Binding</h2>
             <p>Data binding is how we share data between parent and child elements.</p>
 
             <div class="card inset">
                 <h4>The Mediator Pattern</h4>
-                <p>The parent element serves a mediator. The parent element automatically listens for changes to any of
-                    the attributes used in child elements, provided they are surrounded by curly brackets or, moustache: "{{ }}".</p>
+                <p>The parent element serves a mediator. The parent element automatically listens for changes to any of the attributes used in child elements, provided they are surrounded by curly brackets or, moustache: "{{ }}".</p>
                 <img class="card imgInset" src="../images/custom-elements.svg">
-                <p> When he parent is notified of a change to an attribute value,
-                    it first does a 'dirty check'. If the the value has in fact changed, any child elements that happen to
-                    be using that attribute get the new value passed to them. This <b>Bidirectional Data Binding</b> is extremely powerful.</p>
+                <p> When he parent is notified of a change to an attribute value, it first does a 'dirty check'. If the the value has in fact changed, any child elements that happen to be using that attribute get the new value passed to them. This <b>Bidirectional Data Binding</b> is extremely powerful.</p>
             </div>
             <p>There are two kinds of Bindings.</p>
             <ul>
-                <li>Property binding: <br><code>&ltmy-element my-property="{{hostProperty} }"></code><br>Used in
-                passing data to child elements. Note that the attribute name in HTML is <b>lowercase-hyphenated</b>, whereas the JS name is <b>camelCase</b></li>
-                <li>Attribute binding: <br><code>&lta href$="{{hostProperty} }"></code><br>Note the "$".
-                This is extremely useful for dynamically setting things like css class, hidden etc.</li>
+                <li>Property binding: <br><code>&ltmy-element my-property="{{hostProperty} }"></code><br>Used in passing data to child elements. Note that the attribute name in HTML is <b>lowercase-hyphenated</b>, whereas the JS name is <b>camelCase</b></li>
+                <li>Attribute binding: <br><code>&lta href$="{{hostProperty} }"></code><br>Note the "$". This is extremely useful for dynamically setting things like css class, hidden etc.</li>
             </ul>
             <p>Bindings can be one-way or bidirectional.</p>
             <ul>
@@ -63,8 +57,7 @@ TODO Logical not operator, Computed bindings
 <pcl-mediator-child2 child-prop="[[childProp] ]"></pcl-mediator-child2>'
             ></pcl-sniplet>
 
-            <p>Note that in the second instance: child2, we are using square brackets: "[[ ]]". This is because we don't
-                expect the child to update this value</p>
+            <p>Note that in the second instance: child2, we are using square brackets: "[[ ]]". This is because we don't expect the child to update this value</p>
             <p>Value received from child1: <br>[[childProp]] </p>
         </div>
 

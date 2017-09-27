@@ -1,6 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="pcl-sniplet.html">
-<link rel="import" href="pcl-styles.html">
+<link rel="import" href="pcl-shared-styles.html">
 
 <dom-module id="pcl-templates">
     <template>
@@ -21,6 +21,7 @@
                 <li>Conditional template (dom-if). Stamps its contents if a given condition is true.</li>
                 <li>Auto-binding template (dom-bind). Allows data binding outside of a Polymer element.</li>
             </ul>
+            <p>We will be only be discussing <code>dom-repeat and dom-if</code>. Check the docs for details.</p>
             <h3>dom-repeat</h3>
             <p>The template repeater is a specialized template that binds to an array. It creates one instance of the template's contents for each item in the array. For each instance, it creates a new data binding scope that includes the following properties:</p>
             <ul>
@@ -33,6 +34,7 @@
     <div>First name: <span>[[item.first] ]</span></div>
     <div>Last name: <span>[[item.last] ]</span></div>
 </template>'></pcl-sniplet>
+            <p></p>
             <h3>dom-if</h3>
             <p>dom-if stamps itself conditionally based on a property’s value:</p>
             <pcl-sniplet code=

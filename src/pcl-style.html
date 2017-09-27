@@ -1,6 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="pcl-sniplet.html">
-<link rel="import" href="pcl-styles.html">
+<link rel="import" href="pcl-shared-styles.html">
 
 <dom-module id="pcl-style">
     <template>
@@ -8,6 +8,9 @@
         <style include="shared-styles">
             :host {
                 display: block;
+            }
+            h1 {
+                color: red;
             }
         </style>
 
@@ -18,9 +21,32 @@
             <h3>Local Styling</h3>
             <p>TODO</p>
             <h3>Application Styles</h3>
+            <p>To define styles that will be shared across different elements, you can create an element called my-shared-styles.html. This is an ordinary custom element that only contains style (no es6 class). To use these styles we have to do two things.</p>
+            <pcl-sniplet code=
+'Add the HTML Import:
+<link rel="import" href="my-shared-styles.html">
+
+Include my-shared-styles in the <template> tag:
+<template>
+    <style include="my-shared-styles">
+      /* Other styles in here */
+    </style>
+</template>'
+            ></pcl-sniplet>
+
+            <h3>Child Element Styling</h3>
             <p>TODO</p>
-            <h3>Child element Styling</h3>
-            <p>TODO</p>
+            <pcl-sniplet code=
+'Add the HTML Import:
+<link rel="import" href="my-shared-styles.html">
+
+Include my-shared-styles in the <template> tag:
+<template>
+    <style include="my-shared-styles">
+      /* Other styles in here */
+    </style>
+</template>'
+            ></pcl-sniplet>
 
         </div>
 
