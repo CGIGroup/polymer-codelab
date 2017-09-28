@@ -20,7 +20,7 @@ it from here: [Git install](https://git-scm.com/download/win).
 See if you have Nodejs installed already: `npm --version`. If not, you can install 
 it from here: [Nodejs install](https://nodejs.org/en/).
 
-You may have to restart your command prompt for the global installs to tale effect.
+You may have to restart your command prompt for the global installs to take effect.
 
 #### Bower
 
