@@ -38,16 +38,16 @@ it by executing this command:
 
 #### Clone the Codelab app
 
-Execute this command to install the app: 
+Switch to your favorite source directory and execute this command to install the app: 
 
+    cd ....Git
     git clone https://github.com/CGIGroup/polymer-codelab.git
+
+TODO version confict resolution
 
 #### Start the app
 
 Now we can start the Codelab app: 
 
     cd polymer-codelab
-    polymer serve
-
-Open it in your browser:  [http://127.0.0.1:8080](http://127.0.0.1:8080) 
-(your Polymer server might be running on a different port)
+    polymer serve --open
