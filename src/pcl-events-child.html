@@ -1,0 +1,32 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="pcl-shared-styles.html">
+
+<dom-module id="pcl-events-child">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+
+        <div class="card">
+            <h3>Child</h3>
+            <p>Click to fire onClick event</p>
+            <button on-click="handleClick">Kick Me</button>
+
+        </div>
+
+    </template>
+
+    <script>
+        class PclEventsChild extends Polymer.Element {
+            static get is() { return 'pcl-events-child'; }
+
+            handleClick() {
+                this.dispatchEvent(new CustomEvent('toast', {detail: {text: 'Evertthing os fine'}}));
+            }
+        }
+
+        window.customElements.define(PclEventsChild.is, PclEventsChild);
+    </script>
+</dom-module>

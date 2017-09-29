@@ -1,4 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="pcl-events-child.html">
 <link rel="import" href="pcl-sniplet.html">
 <link rel="import" href="pcl-shared-styles.html">
 
@@ -20,12 +22,18 @@
             <h3></h3>
             <p>TODO</p>
 
+            <paper-toast id="okToast"></paper-toast>
         </div>
+        <pcl-events-child on-toast="onToast"></pcl-events-child>
     </template>
 
     <script>
         class PclEvents extends Polymer.Element {
             static get is() { return 'pcl-events'; }
+
+            onToast() {
+                this.$.okToast.open();
+            }
         }
 
         window.customElements.define(PclEvents.is, PclEvents);

@@ -26,21 +26,32 @@
 'Add the HTML Import:
 <link rel="import" href="my-shared-styles.html">
 
-Include my-shared-styles in the <template> tag:
+Include my-shared-styles in the <style> tag:
 <template>
     <style include="my-shared-styles">
       /* Other styles in here */
     </style>
 </template>'
             ></pcl-sniplet>
-
+            <p>This is what the styling looks like</p>
+            <table>
+                <tr><td><pre>h1 {
+                color: red;
+                    }</pre>:</td><td><h1>We love Polymer</h1></td></tr>
+                <tr><td>computedNumber:</td><td>[[computedNumber]]</td></tr>
+                <tr><td>notifyBoolean:</td><td>[[notifyBoolean]]</td></tr>
+                <tr><td>initializedObject:</td><td><pre>[[stringify(initializedObject)]]</pre></td></tr>
+                <tr><td>initializedArray:</td><td><pre>[[stringify(initializedArray)]]</pre></td></tr>
+                <tr><td>undeclared:</td><td>[[undeclared]]</td></tr>
+                <tr><td><code>name</code> appears to be a reserved<br>word, not mentioned in the docs:</td><td>[[name]]</td></tr>
+            </table>
             <h3>Child Element Styling</h3>
             <p>TODO</p>
             <pcl-sniplet code=
 'Add the HTML Import:
 <link rel="import" href="my-shared-styles.html">
 
-Include my-shared-styles in the <template> tag:
+Include my-shared-styles in the <style> tag:
 <template>
     <style include="my-shared-styles">
       /* Other styles in here */
