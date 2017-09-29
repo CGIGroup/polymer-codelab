@@ -10,6 +10,7 @@
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="pcl-icons.html">
 
 <link rel="lazy-import" href="pcl-indexhtml.html">
@@ -25,10 +26,11 @@
 <link rel="lazy-import" href="pcl-style.html">
 <link rel="lazy-import" href="pcl-documenting.html">
 <link rel="lazy-import" href="pcl-flexbox.html">
+<link rel="import" href="pcl-shared-styles.html">
 
 <dom-module id="pcl-app">
     <template>
-        <style>
+        <style include="shared-styles">
             :host {
                 --app-primary-color: #4285f4;
                 --app-secondary-color: black;
@@ -125,7 +127,7 @@
                     <pcl-libraries name="libraries"></pcl-libraries>
                     <pcl-ironajax name="ironajax"></pcl-ironajax>
                     <pcl-templates name="templates"></pcl-templates>
-                    <pcl-events name="events"></pcl-events>
+                    <pcl-events name="events" on-toast="toastListener"></pcl-events>
                     <pcl-style name="style"></pcl-style>
                     <pcl-flexbox name="flexbox"></pcl-flexbox>
                     <pcl-documenting name="documenting"></pcl-documenting>
@@ -133,6 +135,10 @@
                 </iron-pages>
             </app-header-layout>
         </app-drawer-layout>
+
+
+        <paper-toast id="okToast" class="fit-bottom toastOk"></paper-toast>
+        <paper-toast id="errorToast" class="fit-bottom toastError"></paper-toast>
     </template>
 
     <script>
@@ -152,6 +158,11 @@
                     // Polymer.Element#rootPath
                     rootPath: String,
                 };
+            }
+
+            toastListener(e) {
+                this.$.okToast.text = e.detail.text;
+                this.$.okToast.open();
             }
 
             static get observers() {

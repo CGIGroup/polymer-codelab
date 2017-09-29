@@ -1,6 +1,5 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-toast/paper-toast.html">
-<link rel="import" href="pcl-events-child.html">
 <link rel="import" href="pcl-sniplet.html">
 <link rel="import" href="pcl-shared-styles.html">
 
@@ -13,7 +12,7 @@
             }
         </style>
 
-        <div class="card">
+        <div id="container" class="card">
             <a href="https://www.polymer-project.org/2.0/docs/devguide/events" target="_blank">DevGuide: Handle and fire events</a>
             <h2>Events</h2>
             <p>TODO</p>
@@ -22,17 +21,24 @@
             <h3></h3>
             <p>TODO</p>
 
-            <paper-toast id="okToast"></paper-toast>
+            <p>Click to fire an onTap event</p>
+            <button on-tap="onTap">Click if you are happy</button>
+            <p>This is how we handel our onTap event</p>
+            <pcl-sniplet code=
+"onTap() {
+    this.dispatchEvent(new CustomEvent('toast', {detail: {text: 'I Am Happy'}}));
+}"></pcl-sniplet>
         </div>
-        <pcl-events-child on-toast="onToast"></pcl-events-child>
+
+        <!--<pcl-events-child on-toast="onToast"></pcl-events-child>-->
     </template>
 
     <script>
         class PclEvents extends Polymer.Element {
             static get is() { return 'pcl-events'; }
 
-            onToast() {
-                this.$.okToast.open();
+            onTap() {
+                this.dispatchEvent(new CustomEvent('toast', {detail: {text: 'I Am Happy'}}));
             }
         }
 
