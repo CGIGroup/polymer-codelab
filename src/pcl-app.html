@@ -127,7 +127,7 @@
                     <pcl-libraries name="libraries"></pcl-libraries>
                     <pcl-ironajax name="ironajax"></pcl-ironajax>
                     <pcl-templates name="templates"></pcl-templates>
-                    <pcl-events name="events" on-toast="toastListener"></pcl-events>
+                    <pcl-events name="events" on-toast="onToast"></pcl-events>
                     <pcl-style name="style"></pcl-style>
                     <pcl-flexbox name="flexbox"></pcl-flexbox>
                     <pcl-documenting name="documenting"></pcl-documenting>
@@ -160,7 +160,7 @@
                 };
             }
 
-            toastListener(e) {
+            onToast(e) {
                 this.$.okToast.text = e.detail.text;
                 this.$.okToast.open();
             }

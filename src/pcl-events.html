@@ -1,5 +1,5 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="pcl-sniplet.html">
 <link rel="import" href="pcl-shared-styles.html">
 
@@ -15,19 +15,33 @@
         <div id="container" class="card">
             <a href="https://www.polymer-project.org/2.0/docs/devguide/events" target="_blank">DevGuide: Handle and fire events</a>
             <h2>Events</h2>
-            <p>TODO</p>
-            <h3></h3>
-            <p>TODO</p>
-            <h3></h3>
-            <p>TODO</p>
-
-            <p>Click to fire an onTap event</p>
-            <button on-tap="onTap">Click if you are happy</button>
+            <p>Many custom elements fire events to allow you to 'do things' in response. The docs will tell you which events are available (but not always). </p>
+            <p>Some architects promote the notion of 'data down, event up', meaning when elements have something important to say to their parents, they should do so using events, rather than bidirectional data binding. Find out what the best practice is in your environment. </p>
+            <h3>Gesture events</h3>
+            <p>Polymer provides optional support for custom "gesture" events for certain user interactions. These events fire consistently on both touch and mouse environments, so we recommend using these events instead of their mouse- or touch-specific event counterparts. This provides better interoperability with both touch and mouse devices.</p>
+            <p>For example the gesture counter part for <code>onClick</code> is <code>onTap</code>. Check <a href="https://www.polymer-project.org/2.0/docs/devguide/gesture-events" target="_blank">Gesture Events</a> for details.</p>
+            <h3>Annotated event listeners</h3>
+            <p>Polymer makes it easy to add event listeners. You can simply use the <code>on-<i>event</i></code> syntax in your element, like so:</p>
+            <pcl-sniplet code='<paper-button raised on-tap="onTap">Click if you are happy</paper-button>'></pcl-sniplet>
+            <p>Which results in the following button being displayed.</p>
+            <paper-button raised on-tap="onTap">Click if you are happy</paper-button>
             <p>This is how we handel our onTap event</p>
             <pcl-sniplet code=
 "onTap() {
     this.dispatchEvent(new CustomEvent('toast', {detail: {text: 'I Am Happy'}}));
 }"></pcl-sniplet>
+            <p>In this case, our event listener simple fires a custom event. Firing Custom events allows us to add detail to the event.</p>
+
+            <p>Our parent element listens for these events and responds by opening the toast.</p>
+            <pcl-sniplet code=
+'In markup:
+<pcl-events name="events" on-toast="onToast"></pcl-events>
+
+Our onToast event listener:
+onToast(e) {
+    this.$.okToast.text = e.detail.text;
+    this.$.okToast.open();
+}'></pcl-sniplet>
         </div>
 
         <!--<pcl-events-child on-toast="onToast"></pcl-events-child>-->

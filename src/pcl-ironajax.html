@@ -58,7 +58,7 @@ Add the following markup:
 <pre>[[stringify(resp)] ]</pre>
 
 Finally, add the following functions:
-handleResponse(){
+handleResponse(event){
     this.resp = event.detail.xhr.response;
 }
 stringify(obj){
