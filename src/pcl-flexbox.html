@@ -1,23 +1,84 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="pcl-sniplet.html">
 <link rel="import" href="pcl-shared-styles.html">
 
 <dom-module id="pcl-flexbox">
     <template>
-        <style include="iron-flex iron-flex-alignment iron-positioning"></style>
+        <style include="iron-flex iron-flex-alignment"></style>
         <style include="shared-styles">
             :host {
                 display: block;
             }
+            .main-div {
+                height: 200px;
+            }
+            .toolbar-div {
+                height: 30px;
+                background-color: var(--app-primary-color);
+            }
+            .container-div {
+                background-color: pink;
+            }
         </style>
 
         <div class="card">
-            <a href="https://www.polymer-project.org/2.0/docs/devguide/templates" target="_blank">DevGuide: Data binding helper elements</a>
+            <a href="https://www.webcomponents.org/element/PolymerElements/iron-flex-layout" target="_blank">iron-flex-layout</a>
             <h2>Flexbox</h2>
+            <p>Traditionally, getting things to take up available space and to align properly has been the source of major frustration for many web developers. Flexbox provides a set of css classes that help solve these problems.</p>
+            <p>A concise description can be found here: <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank">A Complete Guide to Flexbox</a>.</p>
+            <p>Polymer's wrapper for these classes is called <a href="https://www.webcomponents.org/element/PolymerElements/iron-flex-layout" target="_blank">iron-flex-layout</a>. To use layout classes import the iron-flex-layout-classes file. You must do this in any element that uses any of the iron-flex-layout styles. Next, You must Then include the module(s) that you need in the style tag.</p>
+            <pcl-sniplet lang="html" code=
+'<!-- Include the iron-flex-layout-classes -->
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<!-- import the modules -->
+<style include="iron-flex iron-flex-alignment">'></pcl-sniplet>
+            <p>Five modules are available:</p>
+            <ul>
+                <li><code>iron-flex</code> Basic flex layouts</li>
+                <li><code>iron-flex-reverse</code> Reverse flexbox layouts</li>
+                <li><code>iron-flex-alignment</code> Main axis, cross axis and self alignment</li>
+                <li><code>iron-flex-factors</code> All the available flex factors</li>
+                <li><code>iron-positioning</code> Generic, non-flexbox positioning helpers</li>
+            </ul>
+            <h3>iron-flex</h3>
+            <p>iron-flex is used to get elements to take up available space. In this example we are using the following style and markup:</p>
+            <pcl-sniplet lang="html" code=
+'<!-- The style tag -->
+<style include="iron-flex iron-flex-alignment"></style>
+<style include="shared-styles">
+    :host {
+        display: block;
+    }
+    .main-div {
+        height: 200px;
+    }
+    .toolbar-div {
+        height: 30px;
+        background-color: var(--app-primary-color);
+    }
+    .container-div {
+        background-color: pink;
+    }
+</style>
+
+<!-- The markup -->
+<div class="layout vertical main-div">
+    <div class="toolbar-div">Fixed height</div>
+    <div class="flex container-div">Remaining height</div>
+    <div class="toolbar-div">Fixed height</div>
+</div>'></pcl-sniplet>
+            <p>Which yields the following result:</p>
+            <div class="layout vertical main-div">
+                <div class="toolbar-div">Fixed height</div>
+                <div class="flex container-div">Remaining height</div>
+                <div class="toolbar-div">Fixed height</div>
+            </div>
+            <P>Note that for layout vertical to work there must main-div must have a height. This is easier said than done.</P>
+            <h3>iron-flex-alignment</h3>
             <p>TODO</p>
-            <h3>flex layout</h3>
-            <p>TODO</p>
-            <h3>flex-box</h3>
+            <h3>iron-positioning</h3>
             <p>TODO</p>
 
         </div>

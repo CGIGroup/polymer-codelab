@@ -9,19 +9,42 @@
             :host {
                 display: block;
             }
-            h1 {
-                color: red;
+            h3 {
+                color: green;
+            }
+            .green-div {
+                color: green;
             }
         </style>
 
         <div class="card">
             <a href="https://www.polymer-project.org/2.0/docs/devguide/style-shadow-dom" target="_blank">DevGuide: Style an element's shadow DOM</a>
             <h2>Style</h2>
-            <p>TODO</p>
-            <h3>Local Styling</h3>
-            <p>TODO</p>
+            <h3>Local Styles</h3>
+            <p>Defining local styles for our element is straight forward:</p><pcl-sniplet code=
+'<!-- This what our style tag looks like: -->
+<style include="shared-styles">
+    :host {
+        display: block;
+    }
+    h3 {
+        color: green;
+    }
+    .green-div {
+        color: green;
+    }
+</style>
+
+<!-- In markup we can do this: -->
+<div class="green-div">
+    <p>Note that the styles only have effect in this element. There is no style leakage thanks to shadow-dom.</p>
+</div>'
+        ></pcl-sniplet>
+            <div class="green-div">
+                <p>Note that the styles only have effect in this custom element. There is no style leakage thanks to shadow-dom.</p>
+            </div>
             <h3>Application Styles</h3>
-            <p>To define styles that will be shared across different elements, you can create an element called my-shared-styles.html. This is an ordinary custom element that only contains style (no es6 class). To use these styles we have to do two things.</p>
+            <p>To define styles that will be shared across different elements, you can create an element called <code>my-shared-styles.html</code>. This is an ordinary custom element that only contains style (no es6 class). To use these styles we have to do two things.</p>
             <pcl-sniplet code=
 'Add the HTML Import:
 <link rel="import" href="my-shared-styles.html">
@@ -33,32 +56,27 @@ Include my-shared-styles in the <style> tag:
     </style>
 </template>'
             ></pcl-sniplet>
-            <p>This is what the styling looks like</p>
-            <table>
-                <tr><td><pre>h1 {
-                color: red;
-                    }</pre>:</td><td><h1>We love Polymer</h1></td></tr>
-                <tr><td>computedNumber:</td><td>[[computedNumber]]</td></tr>
-                <tr><td>notifyBoolean:</td><td>[[notifyBoolean]]</td></tr>
-                <tr><td>initializedObject:</td><td><pre>[[stringify(initializedObject)]]</pre></td></tr>
-                <tr><td>initializedArray:</td><td><pre>[[stringify(initializedArray)]]</pre></td></tr>
-                <tr><td>undeclared:</td><td>[[undeclared]]</td></tr>
-                <tr><td><code>name</code> appears to be a reserved<br>word, not mentioned in the docs:</td><td>[[name]]</td></tr>
-            </table>
             <h3>Child Element Styling</h3>
-            <p>TODO</p>
-            <pcl-sniplet code=
-'Add the HTML Import:
-<link rel="import" href="my-shared-styles.html">
+            <p>One of the consequences of shadow-dom, is that we can't just define a style and expect our child elements to use it. To add styles to child elements we have to use custom properties and mixins. The elements documentation will tell you which custom properties and mixins are available. See for example <a href="https://www.webcomponents.org/element/PolymerElements/paper-checkbox/elements/paper-checkbox" target="_blank">paper-checkbox</a>.</p>
+            <h4>Custom properties</h4>
+            <p>The author of a Polymer element can provide custom CSS properties that you can use to style the appearance of the element in your application. Custom properties allow CSS authors to define cascading CSS variables, which are accepted by all CSS properties..</p>
+            <p>For example our <code>pcl-app.html</code> defines <code>--app-primary-color and --app-secondary-color</code></p>
+            <pcl-sniplet lang="css" code=
+':host {
+    --app-primary-color: #4285f4;
+    --app-secondary-color: black;
 
-Include my-shared-styles in the <style> tag:
-<template>
-    <style include="my-shared-styles">
-      /* Other styles in here */
-    </style>
-</template>'
+    display: block;
+}'
             ></pcl-sniplet>
-
+            <p>We can then use the primary color, throughout the application, with the css var syntax:</p>
+            <pcl-sniplet lang="css" code=
+'app-header {
+    color: #fff;
+    background-color: var(--app-primary-color);
+}'></pcl-sniplet>
+            <h4>Mixins</h4>
+            <p>Mixins allow us to apply themes. Themes are in effect whole set of styles that are applied at once. Check out <a href="https://www.polymer-project.org/2.0/docs/devguide/custom-css-properties#use-custom-css-mixins" target="_blank">Use custom CSS mixins</a> for details.</p>
         </div>
 
     </template>
