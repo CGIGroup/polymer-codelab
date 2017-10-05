@@ -10,15 +10,29 @@
             :host {
                 display: block;
             }
-            .main-div {
+            .container {
                 height: 200px;
             }
             .toolbar-div {
                 height: 30px;
                 background-color: var(--app-primary-color);
             }
-            .container-div {
+            .content-div {
                 background-color: pink;
+            }
+            .addressCard{
+                margin: 10px;
+                background-color: #fc0;
+                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+                border-radius: 5px;
+                border: #cc0201;
+                border-style: solid;
+                padding: 3px;
+                cursor: pointer;
+                max-width: 320px;
+            }
+            .leading {
+                margin-right: 3px;
             }
         </style>
 
@@ -51,37 +65,65 @@
     :host {
         display: block;
     }
-    .main-div {
+    .container {
         height: 200px;
     }
     .toolbar-div {
         height: 30px;
         background-color: var(--app-primary-color);
     }
-    .container-div {
+    .content-div {
         background-color: pink;
     }
 </style>
 
 <!-- The markup -->
-<div class="layout vertical main-div">
+<div class="layout vertical container">
     <div class="toolbar-div">Fixed height</div>
-    <div class="flex container-div">Remaining height</div>
+    <div class="flex content-div">Remaining height</div>
     <div class="toolbar-div">Fixed height</div>
 </div>'></pcl-sniplet>
             <p>Which yields the following result:</p>
-            <div class="layout vertical main-div">
+            <div class="layout vertical container">
                 <div class="toolbar-div">Fixed height</div>
-                <div class="flex container-div">Remaining height</div>
+                <div class="flex content-div">Remaining height</div>
                 <div class="toolbar-div">Fixed height</div>
             </div>
-            <P>Note that for layout vertical to work there must main-div must have a height. This is easier said than done.</P>
-            <h3>iron-flex-alignment</h3>
-            <p>TODO</p>
-            <h3>iron-positioning</h3>
-            <p>TODO</p>
+            <P>Note that for layout vertical to work the container must have a height.</P>
+            TODO: explain fit, relative
+            <P>You can do lots of cool things with Flexbox. In the example below, the fact that we use the <code>flex</code> class means we retain responsiveness. The element will adjust it's size according to screen width. See <a href="https://www.webcomponents.org/element/PolymerElements/iron-flex-layout/page/GUIDE.md" target="_blank">Flexbox layout guide</a> for full details.</P>
 
         </div>
+        <div class="addressCard">
+            <div class="layout horizontal">
+                <div class="leading">
+                    <div class="layout vertical">
+                        <div>23</div>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="layout vertical">
+                        <div><b>CGI</b></div>
+                        <div>Sirusdreff 23</div>
+                        <div>2132 WT Hoofddorp</div>
+                    </div>
+                </div>
+                <div class="layout vertical">
+                    <div>11:50</div>
+                    <div>PA</div>
+                    <div>...5643</div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card exercise">
+            <p>Try adding a toolbar to <code>pcl-myelement.html</code>:</p>
+            <pcl-sniplet code=
+                                 ""
+            ></pcl-sniplet>
+        </div>
+
     </template>
 
     <script>

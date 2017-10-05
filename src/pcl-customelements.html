@@ -53,13 +53,11 @@ Other imports...
                 ></pcl-sniplet></li>
                 </li>
 
-                <li class="bottom-margin"><b>dom-module</b> Wraps the entire element. The Id must be identical to the name of the source file.
-                    The id must start with a lower case and contain at least one hyphen.
+                <li class="bottom-margin"><b>dom-module</b> Wraps the entire element. The Id must be identical to the name of the source file. The id must start with a lower case and contain at least one hyphen.
                     <pcl-sniplet code='<dom-module id="pcl-customelements">'></pcl-sniplet></li>
                 </li>
 
-                <li class="bottom-margin"><b>style</b> The style tag describes the style for this particular custom element. There is no
-                    leakage to other elements thanks to shadow dom. The style tag should always contain at least:
+                <li class="bottom-margin"><b>style</b> The style tag describes the style for this particular custom element. There is no leakage to other elements thanks to shadow dom. The style tag should always contain at least:
                     <pcl-sniplet code=
 '<style>
     :host {
@@ -67,16 +65,14 @@ Other imports...
     }
 </style>'
                     ></pcl-sniplet>
-                    <code>:host</code> refers to this element. For some reason <code>display: block;</code>
-                        is not the default.
+                    <code>:host</code> refers to this element. For some reason <code>display: block;</code> is not the default.
                 </li>
 
                 <li class="bottom-margin"><b>HTML mark-up</b> This is where we can start adding elements to our hart's content.
                     <pcl-sniplet code='<h1>I am doing Polymer.</h1>'></pcl-sniplet></li>
                 </li>
 
-                <li class="bottom-margin"><b>script</b> This is where we define the ES6 class that ties into our custom element.The script
-                    tag must contain at least the following:
+                <li class="bottom-margin"><b>script</b> This is where we define the ES6 class that ties into our custom element. The script tag must contain at least the following:
                     <pcl-sniplet code=
 '<script>
     class PclMyelement extends Polymer.Element {
@@ -130,8 +126,7 @@ Other imports...
     </script>
 </dom-module>'
             ></pcl-sniplet>
-            <p>Remove the extra space in <code>[[name] ]</code>. We had to do this to prevent the parser
-                from interpreting the value.</p>
+            <p>Remove the extra space in <code>[[name] ]</code>. We had to do this to prevent the parser from interpreting the value.</p>
             <p>To add our element to the app, do the following:</p>
             <ul>
                 <li>Add the following lines to <code>pcl-app</code> where appropriate.

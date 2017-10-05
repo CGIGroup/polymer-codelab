@@ -1,0 +1,148 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../bower_components/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../bower_components/app-localize-behavior/app-localize-behavior.html">
+<link rel="import" href="pcl-sniplet.html">
+<link rel="import" href="pcl-shared-styles.html">
+
+<dom-module id="pcl-localization">
+    <template>
+        <style include="iron-flex iron-flex-alignment iron-positioning"></style>
+        <style include="shared-styles">
+            :host {
+                display: block;
+            }
+            .inset{
+                width:300px;
+            }
+        </style>
+
+        <div class="card">
+            <a href="https://www.polymer-project.org/2.0/toolbox/localize" target="_blank">Localization</a>
+            <h2>Localization</h2>
+            <p>When developing apps for an international audience, chances are you are going to want to use more than just the English language.
+                <a href="https://www.webcomponents.org/element/PolymerElements/app-localize-behavior" target="_blank">app-localize-behavior</a> is Polymer's wrapper of <a href="https://formatjs.io/" target="_blank">FormatJS</a>. This library allows you to define a JSON file that contains the various translations for the text you use in your elements.</p>
+
+            <div class="card inset">
+                <h4>Intl Support</h4>
+                <p>If you plan support older browsers you may need to provide a polyfill. Check <a href="https://caniuse.com/#search=Intl" target="_blank">Can I Use Intl</a>. Check the docs for a description of how to polyfill.</p>
+            </div>
+
+            <p>To use Localization we have to do five things:</p>
+            <ul>
+                <li>Create a <code>locales.json</code> with the structure seen below.</li>
+                <li>Import the app-localize-behavior.</li>
+                <li>Include the <code>Polymer.AppLocalizeBehavior</code> mixin in your class definition.</li>
+                <li>Load <code>locales.json</code> in the <code>attached()</code> function.</li>
+                <li>Potentially, add a language property with a default value.</li>
+            </ul>
+            <p>Now we can simply translate our strings by calling localize: <code>{{localize('signin')} }</code></p>
+            <p>This is our <code>locales.json</code>:</p>
+            <pcl-sniplet code=
+'{
+  "EN": {
+    "username": "User Name",
+    "password": "Password",
+    "signin": "Sign In"
+  },
+  "NL": {
+    "username":"Gebruikersnaam",
+    "password": "Wachtwoord",
+    "signin": "Aanmelden"
+  },
+  "FR": {
+    "username":"Nom d utilisateur",
+    "password": "Mot de passe",
+    "signin": "Se Connecter"
+  }
+}'
+        ></pcl-sniplet>
+
+            <p>This is how we use it:</p>
+            <pcl-sniplet lang="['html', 'js']" code=
+'<!-- The import -->
+<link rel="import" href="../bower_components/app-localize-behavior/app-localize-behavior.html">
+
+<!-- In markup -->
+<div class="card">
+    <div class="layout vertical">
+        <p><strong>{{localize("signin")} }</strong>
+        <paper-input value="{{username} }" label="{{localize("username")} }" type="string"></paper-input>
+        <paper-input value="{{password} }" label="{{localize("password")} }" type="password"></paper-input>
+
+    <paper-button on-tap="onTapSignIn"
+                  disabled$="username"
+                  raised>{{localize("signin")} }</paper-button>
+    </div>
+</div>
+
+<!-- The class definition -->
+class PclLocalization extends Polymer.mixinBehaviors([Polymer.AppLocalizeBehavior], Polymer.Element) {
+}
+
+<!-- Our attach function -->
+attached() {
+    this.loadResources(this.resolveUrl("locales.json"));
+}'
+            ></pcl-sniplet>
+
+            <p>Note: Ignore the extra space in the data bindings. <code>'username' and 'password'</code> are single quoted.</p>
+            <p>Which yields the following result.</p>
+            <label id="label1">Language:</label>
+            <paper-radio-group aria-labelledby="label1"
+                               required
+                               auto-validate
+                               selected={{language}}
+                               attr-for-selected="name">
+                <paper-radio-button name="EN">English</paper-radio-button>
+                <paper-radio-button name="NL">Dutch</paper-radio-button>
+                <paper-radio-button name="FR">French</paper-radio-button>
+            </paper-radio-group>
+
+            <div class="card">
+                <div class="layout vertical">
+                    <p><strong>{{localize('signin')}}</strong>
+                        <paper-input value="{{username}}" label="{{localize('username')}}" type="string" length="16" preventInvalidInput></paper-input>
+                        <paper-input value="{{password}}" label="{{localize('password')}}" type="password" length="16" failed ="true" preventInvalidInput></paper-input>
+
+                        <paper-button on-tap="onTapSignIn"
+                                      disabled$="username"
+                                      raised>{{localize('signin')}}</paper-button>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="card exercise">
+            <p>Try adding a some CGI Styling to our app <code>pcl-app.html</code>:</p>
+            <pcl-sniplet code=
+''
+            ></pcl-sniplet>
+        </div>
+    </template>
+
+    <script>
+        class PclLocalization extends Polymer.mixinBehaviors([Polymer.AppLocalizeBehavior], Polymer.Element) {
+            static get is() { return 'pcl-localization'; }
+            static get properties() {
+                return {
+                    language: {
+                        value: 'EN'
+                    }
+                };
+            }
+
+            attached() {
+                this.loadResources(this.resolveUrl('locales.json'));
+            }
+
+        }
+
+        window.customElements.define(PclLocalization.is, PclLocalization);
+    </script>
+</dom-module>

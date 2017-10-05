@@ -22,7 +22,10 @@
     "iron-ajax": "PolymerElements/iron-ajax#^2.0.5",
     "google-youtube": "GoogleWebComponents/google-youtube#^2.0.0",
     "paper-toast": "PolymerElements/paper-toast#^2.0.0",
-    "paper-button": "PolymerElements/paper-button#^2.0.0"
+    "paper-button": "PolymerElements/paper-button#^2.0.0",
+    "app-localize-behavior": "PolymerElements/app-localize-behavior#^2.0.0",
+    "paper-radio-button": "PolymerElements/paper-radio-button#^2.0.0",
+    "paper-radio-group": "PolymerElements/paper-radio-group#^2.0.0"
   },
   "resolutions": {
     "polymer": "^2.0.0",

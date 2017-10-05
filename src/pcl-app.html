@@ -26,6 +26,7 @@
 <link rel="lazy-import" href="pcl-style.html">
 <link rel="lazy-import" href="pcl-documenting.html">
 <link rel="lazy-import" href="pcl-flexbox.html">
+<link rel="lazy-import" href="pcl-localization.html">
 <link rel="import" href="pcl-shared-styles.html">
 
 <dom-module id="pcl-app">
@@ -60,7 +61,7 @@
                 padding: 0 16px;
                 text-decoration: none;
                 color: var(--app-secondary-color);
-                line-height: 40px;
+                line-height: 30px;
             }
 
             .drawer-list a.iron-selected {
@@ -131,6 +132,7 @@
                     <pcl-style name="style"></pcl-style>
                     <pcl-flexbox name="flexbox"></pcl-flexbox>
                     <pcl-documenting name="documenting"></pcl-documenting>
+                    <pcl-localization name="localization"></pcl-localization>
                     <pcl-view404 name="view404"></pcl-view404>
                 </iron-pages>
             </app-header-layout>
@@ -174,7 +176,7 @@
             _routePageChanged(page) {
                 // If no page was found in the route data, page will be an empty string.
                 // Deault to 'view1' in that case.
-                this.page = page || 'view1';
+                this.page = page || 'intro';
 
                 // Close a non-persistent drawer when the page & route are changed.
                 if (!this.$.drawer.persistent) {

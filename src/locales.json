@@ -1,0 +1,17 @@
+{
+  "EN": {
+    "username": "User Name",
+    "password": "Password",
+    "signin": "Sign In"
+  },
+  "NL": {
+    "username":"Gebruikersnaam",
+    "password": "Wachtwoord",
+    "signin": "Aanmelden"
+  },
+  "FR": {
+    "username":"Nom d'utilisateur",
+    "password": "Mot de passe",
+    "signin": "Se Connecter"
+  }
+}
