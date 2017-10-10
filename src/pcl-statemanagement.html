@@ -1,0 +1,121 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/google-youtube/google-youtube.html">
+<link rel="import" href="pcl-sniplet.html">
+<link rel="import" href="pcl-shared-styles.html">
+
+<dom-module id="pcl-statemanagement">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+            }
+            img {
+                float: right;
+                margin: 0 0 10px 10px;
+            }
+        </style>
+
+        <div class="card">
+            <a href="https://www.webcomponents.org/element/tur-nr/polymer-redux" target="_blank">polymer-redux</a>
+            <h2>State Management</h2>
+            <p>Application state can be thought of as <b>The data that your user is working with</b>, at any given moment. Often this is data that has recently been retrieved from the server. This data might be modified or appended, before sending it back to the server.</p>
+
+            <img class="card" src="../images/classicDesign.svg"  width="400">
+            <h3>Classic Design</h3>
+            <p>The classic approach would be to retrieve this data in the various custom elements, as needed.</p>
+            <p>Any data that need to be shared amongst elements can be passed back to the parent element through bidirectional data binding.</p>
+            <p>While this is fine for simple apps, when dealing with more complected business logic this can get a bit messy.</p>
+
+            <div style="clear: both;"></div>
+
+            <img class="card" src="../images/reduxDesign.svg"  width="400">
+            <h3>State Management using Redux</h3>
+            <p>Redux provides a <b>Separation of Concerns</b>.</p>
+            <p>Redux maintains a global store and orchestrates business logic by responding to <code>actions</code> through something called a "reducer" (fancy name for a <code>switch</code> statement). </p>
+            <p>Meanwhile, custom elements share the global store, and listen for changes. If they want to change anything in the global store, the must do so through <code>actions</code>. From the elements perspective, the global store is immutable.</p>
+            <p>As a result, your custom elements become clean and purposeful. In this example:</p>
+            <ol>
+                <li>The signin element simply sends two values: <code>username and password</code> to the redux-store in the SIGNIN action.</li>
+                <li>In response the redux-store populates the <code>body</code> object with <code>username and password</code>.</li>
+                <li>The <code>pcl-soapxml</code> element observes this change and sends a login message to the server.</li>
+                <li>On successful signin, <code>pcl-soapxml</code> sends a SIGNIN_SUCCESS action to the redux-store.</li>
+                <li>The redux-store fires a okMsg event to inform the user of the successful login.</li>
+                <li>The redux-store populates the <code>body</code> object with a request for products for this user.</li>
+                <li>The <code>pcl-soapxml</code> element observes this change and sends the request for products to the server.</li>
+                <li>On success, the <code>pcl-soapxml</code> sends a GET_PRODS_SUCCESS action with a products array to the redux-store.</li>
+                <li>The redux-store fires a okMsg event to inform the user of the successful product retrieval.</li>
+                <li>The redux-store updates the URL to navigate to the products page to allow the user to select a product.</li>
+                <li>and so on....</li>
+            </ol>
+
+            <h2>Using Redux</h2>
+            <p>To use Redux we have to do three things</p>
+            <ul>
+                <li>Create a redux-store similar to the one depicted below.</li>
+                <li>In every element that uses .</li>
+                <li>Create a redux-store similar to the one depicted below.</li>
+            </ul>
+            <pcl-sniplet code=
+'<link rel="import" href="../bower_components/polymer-redux/polymer-redux.html">
+
+<script>
+    const initialState = {
+        user: {},
+        products: [],
+        selectedProduct: {},
+        prod1: {},
+        prod2: {},
+        body: {}
+    };
+    const reducer = (state, action) => {
+        if (!state) return initialState;
+
+        switch (action.type) {
+            case "SIGNIN":
+                var clonedState = Object.assign({}, state);
+                // Update the body object
+                return clonedState;
+
+            case "SIGNIN_SUCCESS":
+                var clonedState = Object.assign({}, state);
+                // Fire success event
+                return clonedState;
+        }
+    };
+    const store = Redux.createStore(reducer, Redux.applyMiddleware(ReduxThunk.default));
+    const ReduxBehavior = PolymerRedux(store);
+</script>'
+            ></pcl-sniplet>
+
+            <p>A working example can be found here: <a href="https://tur-nr.github.io/polymer-redux/" target="_blank">Polymer ❤ Redux</a></p>
+            <h2>More Information</h2>
+            <p>Checkout these Polycasts. Note that these Polycasts are based on Polymer 1.x. Someone went ahead and re-built these examples in Polymer 2.x: <a href="https://github.com/johnthad/polycast61" target="_blank">How to use Redux in Polymer 2</a>.</p>
+
+            <google-youtube style="float:right;"
+                            video-id="PahsgJn0sgU"
+                            rel="0"
+                            showInfo="1">
+            </google-youtube>
+
+            <div style="clear: both;"></div>
+            <p></p>
+            <div style="clear: both;"></div>
+
+            <google-youtube style="float:right;"
+                            video-id="y2FxAT1u8pU"
+                            rel="0"
+                            showInfo="1">
+            </google-youtube>
+            <p></p>
+            <div style="clear: both;"></div>
+        </div>
+    </template>
+
+    <script>
+        class PclStateManagement extends Polymer.Element {
+            static get is() { return 'pcl-statemanagement'; }
+        }
+
+        window.customElements.define(PclStateManagement.is, PclStateManagement);
+    </script>
+</dom-module>

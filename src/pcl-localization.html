@@ -74,9 +74,9 @@
         <paper-input value="{{username} }" label="{{localize("username")} }" type="string"></paper-input>
         <paper-input value="{{password} }" label="{{localize("password")} }" type="password"></paper-input>
 
-    <paper-button on-tap="onTapSignIn"
-                  disabled$="username"
-                  raised>{{localize("signin")} }</paper-button>
+        <paper-button on-tap="onTapSignIn"
+                      disabled$="username"
+                      raised>{{localize("signin")} }</paper-button>
     </div>
 </div>
 
@@ -110,7 +110,7 @@ attached() {
                         <paper-input value="{{password}}" label="{{localize('password')}}" type="password" length="16" failed ="true" preventInvalidInput></paper-input>
 
                         <paper-button on-tap="onTapSignIn"
-                                      disabled$="username"
+                                      disabled$="[[!username]]"
                                       raised>{{localize('signin')}}</paper-button>
                 </div>
             </div>
