@@ -33,16 +33,18 @@
             <p>Redux provides a <b>Separation of Concerns</b>.</p>
             <p>Redux maintains a global store and orchestrates business logic by responding to <code>actions</code> through something called a "reducer" (fancy name for a <code>switch</code> statement). </p>
             <p>Meanwhile, custom elements share the global store, and listen for changes. If they want to change anything in the global store, the must do so through <code>actions</code>. From the elements perspective, the global store is immutable.</p>
-            <p>As a result, your custom elements become clean and purposeful. In this example:</p>
+            <p>As a result, your custom elements become clean and purposeful. In this example the workflow might go something like this:</p>
             <ol>
                 <li>The signin element simply sends two values: <code>username and password</code> to the redux-store in the SIGNIN action.</li>
                 <li>In response the redux-store populates the <code>body</code> object with <code>username and password</code>.</li>
                 <li>The <code>pcl-soapxml</code> element observes this change and sends a login message to the server.</li>
-                <li>On successful signin, <code>pcl-soapxml</code> sends a SIGNIN_SUCCESS action to the redux-store.</li>
+                <li>On successful signin, <code>pcl-soapxml</code> sends a SIGNIN_SUCCESS action with user object, to the redux-store.</li>
+                <li>The redux-store stores the user object for future reference.</li>
                 <li>The redux-store fires a okMsg event to inform the user of the successful login.</li>
                 <li>The redux-store populates the <code>body</code> object with a request for products for this user.</li>
                 <li>The <code>pcl-soapxml</code> element observes this change and sends the request for products to the server.</li>
-                <li>On success, the <code>pcl-soapxml</code> sends a GET_PRODS_SUCCESS action with a products array to the redux-store.</li>
+                <li>On success, the <code>pcl-soapxml</code> sends a GET_PRODS_SUCCESS action with a products array, to the redux-store.</li>
+                <li>The redux-store stores the products array. Custom elements respond to the change.</li>
                 <li>The redux-store fires a okMsg event to inform the user of the successful product retrieval.</li>
                 <li>The redux-store updates the URL to navigate to the products page to allow the user to select a product.</li>
                 <li>and so on....</li>
@@ -51,10 +53,13 @@
             <h2>Using Redux</h2>
             <p>To use Redux we have to do three things</p>
             <ul>
-                <li>Create a redux-store similar to the one depicted below.</li>
-                <li>In every element that uses .</li>
-                <li>Create a redux-store similar to the one depicted below.</li>
+                <li>Create a <code>redux-store.html</code> similar to the one depicted below.</li>
+                <li>In every element that uses the global store, import <code>redux-store.html</code>.</li>
+                <li>Include <code>ReduxBehavior</code> in your ES6 class definition.</li>
+                <li>Include the <code>statePath</code> in your property definitions. Eg. <code>statePath: 'user'</code></li>
+                <li>Send actions to the global store like so: <code>this.dispatch({type: 'SIGNIN', ...})</code></li>
             </ul>
+            <p>This is what a <code>redux-store.html</code> might look like:</p>
             <pcl-sniplet code=
 '<link rel="import" href="../bower_components/polymer-redux/polymer-redux.html">
 
@@ -86,7 +91,14 @@
     const ReduxBehavior = PolymerRedux(store);
 </script>'
             ></pcl-sniplet>
-
+            <p>Note the following:</p>
+            <ul>
+                <li>The redux store begins with importing <code>polymer-redux.html</code></li>
+                <li>Next we declare the <code>initialState</code> of our global store</li>
+                <li>Then we define the <code>reducer</code> which contains a <code>switch</code> statement to respond to actions.</li>
+                <li>Each action response begins by cloning the state before returning it. This is to prevent custom elements that are sharing this store, from accidentally updating it.</li>
+                <li>In the example above, we also do this: <code>Redux.applyMiddleware(ReduxThunk.default)</code>. This library is not required for ordinary use. Redux Thunk middleware allows you to write action creators that return a function instead of an action. The thunk can be used to dispatch an action in response to asynchronous ajax requests. See Polycast 62, below for details.</li>
+            </ul>
             <p>A working example can be found here: <a href="https://tur-nr.github.io/polymer-redux/" target="_blank">Polymer ❤ Redux</a></p>
             <h2>More Information</h2>
             <p>Checkout these Polycasts. Note that these Polycasts are based on Polymer 1.x. Someone went ahead and re-built these examples in Polymer 2.x: <a href="https://github.com/johnthad/polycast61" target="_blank">How to use Redux in Polymer 2</a>.</p>
