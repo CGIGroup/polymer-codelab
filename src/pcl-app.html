@@ -24,10 +24,11 @@
 <link rel="lazy-import" href="pcl-templates.html">
 <link rel="lazy-import" href="pcl-events.html">
 <link rel="lazy-import" href="pcl-style.html">
-<link rel="lazy-import" href="pcl-documenting.html">
 <link rel="lazy-import" href="pcl-flexbox.html">
 <link rel="lazy-import" href="pcl-localization.html">
 <link rel="lazy-import" href="pcl-statemanagement.html">
+<link rel="lazy-import" href="pcl-offline.html">
+<link rel="lazy-import" href="pcl-documenting.html">
 <link rel="import" href="pcl-shared-styles.html">
 
 <dom-module id="pcl-app">
@@ -86,7 +87,7 @@
                     <a name="intro" href="[[rootPath]]intro">Introduction</a>
                     <a name="indexhtml" href="[[rootPath]]indexhtml">index.html</a>
                     <a name="customelements" href="[[rootPath]]customelements">Custom Elements</a>
-                    <a name="myelement" href="[[rootPath]]myelement">My Element</a>
+                    <a name="myelement" href="[[rootPath]]myelement">My Custom Element</a>
                     <a name="declareproperties" href="[[rootPath]]declareproperties">Declare Properties</a>
                     <a name="databinding" href="[[rootPath]]databinding">Data Binding</a>
                     <a name="libraries" href="[[rootPath]]libraries">Libraries</a>
@@ -97,6 +98,7 @@
                     <a name="flexbox" href="[[rootPath]]flexbox">Flexbox</a>
                     <a name="localization" href="[[rootPath]]localization">Localization</a>
                     <a name="statemanagement" href="[[rootPath]]statemanagement">State Management</a>
+                    <a name="offline" href="[[rootPath]]offline">Offline Capability</a>
                     <a name="documenting" href="[[rootPath]]documenting">Documenting</a>
                     <a name="build" href="[[rootPath]]build">Build</a>
                     <a name="test" href="[[rootPath]]test">Unit Test</a>
@@ -132,9 +134,10 @@
                     <pcl-events name="events" on-toast="onToast"></pcl-events>
                     <pcl-style name="style"></pcl-style>
                     <pcl-flexbox name="flexbox"></pcl-flexbox>
-                    <pcl-documenting name="documenting"></pcl-documenting>
                     <pcl-localization name="localization"></pcl-localization>
                     <pcl-statemanagement name="statemanagement"></pcl-statemanagement>
+                    <pcl-offline name="offline"></pcl-offline>
+                    <pcl-documenting name="documenting"></pcl-documenting>
                     <pcl-view404 name="view404"></pcl-view404>
                 </iron-pages>
             </app-header-layout>
