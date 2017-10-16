@@ -9,11 +9,20 @@
             :host {
                 display: block;
             }
+
+            .inset{
+                width:300px;
+            }
         </style>
 
         <div class="card">
             <a href="https://www.polymer-project.org/2.0/docs/devguide/templates" target="_blank">DevGuide: Data binding helper elements</a>
             <h2>Templates</h2>
+            <div class="card inset">
+                <h4>Template Support</h4>
+                <p>Since Polymer 2.0 <code>&ltTemplate&gt</code> functionality needs to be imported explicitly, unless you are running in hybrid mode. TODO explain.</p>
+                <p> This has been done to lighten the initial download for apps that don't need it. Check out <a href="https://caniuse.com/#search=templates" target="_blank">Can I Use Templates</a> to see which browsers support SW.</p>
+            </div>
             <p>Polymer provides a set of custom elements to help with common data binding use cases:</p>
             <ul>
                 <li>Template repeater (dom-repeat). Creates an instance of the template's contents for each item in an array.</li>
@@ -21,7 +30,7 @@
                 <li>Conditional template (dom-if). Stamps its contents if a given condition is true.</li>
                 <li>Auto-binding template (dom-bind). Allows data binding outside of a Polymer element.</li>
             </ul>
-            <p>We will be only be discussing <code>dom-repeat and dom-if</code>. Check the docs for details.</p>
+            <p>We will be be discussing <code>dom-repeat and dom-if</code>. Check the docs for details.</p>
             <h3>dom-repeat</h3>
             <p>The template repeater is a specialized template that binds to an array. It creates one instance of the template's contents for each item in the array. For each instance, it creates a new data binding scope that includes the following properties:</p>
             <ul>

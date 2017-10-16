@@ -1,4 +1,5 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/google-youtube/google-youtube.html">
 <link rel="import" href="pcl-sniplet.html">
 <link rel="import" href="pcl-shared-styles.html">
 
@@ -9,17 +10,50 @@
             :host {
                 display: block;
             }
+
+            img {
+                float: right;
+                margin: 0 0 10px 10px;
+            }
+
+            .inset{
+                width:300px;
+            }
         </style>
 
         <div class="card">
-            <a href="https://www.polymer-project.org/2.0/docs/tools/documentation#document-an-element" target="_blank">DevGuide: Document an element</a>
+            <a href="https://www.polymer-project.org/2.0/toolbox/service-worker" target="_blank">DevGuide: Offline caching with Service Worker Precache</a>
             <h2>Offline Capability</h2>
-            <p>TODO</p>
-            <h3></h3>
+            <p>One of the properties of Progressive Web Apps is Offline Capability. In a nutshell, this means apps can be started, even if there is no internet connection.</p>
+
+            <div class="card inset">
+                <h4>Service Worker Support</h4>
+                <p>Service Workers are not supported by all browsers (yet). In it's absence, your app will use standard browser caching. Check out <a href="https://caniuse.com/#search=service%20workers" target="_blank">Can I Use Sevice Workers</a> to see which browsers support SW.</p>
+            </div>
+
+            <p>To achieve this Polymer takes advantage of the Service Worker, a W3C standard. The Service Worker runs as a background task in the browser, not in your app. It is still active, even when your browser is shutdown.</p>
+
+            <h3>Service Worker</h3>
+            <p>The Service Worker acts as a proxy between the the app and the server.</p>
+
+            <p>    <a href="https://jakearchibald.com/2014/offline-cookbook/" target="_blank">The offline cookbook</a></p>
+
+            <img class="card" src="../images/serviceWorker.svg"  width="250">
+            <h3>Service Worker</h3>
+            <p><a href="https://jakearchibald.com/2014/offline-cookbook/#cache-then-network" target="_blank">The offline cookbook: Cache then network</a>.</p>
             <p>TODO</p>
             <h3></h3>
             <p>TODO</p>
 
+            <div style="clear: both;"></div>
+
+            <google-youtube style="float:right;"
+                            video-id="cmGr0RszHc8"
+                            rel="0"
+                            showInfo="1">
+            </google-youtube>
+
+            <div style="clear: both;"></div>
         </div>
     </template>
 
