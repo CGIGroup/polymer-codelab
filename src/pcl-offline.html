@@ -26,14 +26,17 @@
             <h2>Offline Capability</h2>
             <p>One of the properties of Progressive Web Apps is Offline Capability. In a nutshell, this means apps can be started, even if there is no internet connection.</p>
 
+            <h3>Service Workers</h3>
+
             <div class="card inset">
                 <h4>Service Worker Support</h4>
-                <p>Service Workers are not supported by all browsers (yet). In it's absence, your app will use standard browser caching. Check out <a href="https://caniuse.com/#search=service%20workers" target="_blank">Can I Use Sevice Workers</a> to see which browsers support SW.</p>
+                <p>Service Workers are not supported by all browsers (yet). In it's absence, your app will use standard browser caching. As a result, your app will not startup if there is no internet connection.</p>
+                <p>Check out <a href="https://caniuse.com/#search=service%20workers" target="_blank">Can I Use: Service Workers</a> to see which browsers support SW.</p>
             </div>
 
-            <p>To achieve this Polymer takes advantage of the Service Worker, a W3C standard. The Service Worker runs as a background task in the browser, not in your app. It is still active, even when your browser is shutdown.</p>
+            <p>To achieve Offline Capability Polymer takes advantage of the Service Workers, a W3C standard. </p>
+            <p>A Service Worker runs as a background task in your browser, not in your app. It is still active, even when your browser is shutdown.</p>
 
-            <h3>Service Worker</h3>
             <p>The Service Worker acts as a proxy between the the app and the server.</p>
 
             <p>    <a href="https://jakearchibald.com/2014/offline-cookbook/" target="_blank">The offline cookbook</a></p>
