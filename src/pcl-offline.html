@@ -17,36 +17,114 @@
             }
 
             .inset{
-                width:300px;
+                width:350px;
             }
         </style>
 
         <div class="card">
             <a href="https://www.polymer-project.org/2.0/toolbox/service-worker" target="_blank">DevGuide: Offline caching with Service Worker Precache</a>
             <h2>Offline Capability</h2>
-            <p>One of the properties of Progressive Web Apps is Offline Capability. In a nutshell, this means apps can be started, even if there is no internet connection.</p>
 
-            <h3>Service Workers</h3>
+            <img class="card" src="../images/serviceWorker.svg"  width="200">
+
+            <p>One of the properties of Progressive Web Apps is Offline Capability. In a nutshell, this means apps can be started, even if there is no internet connection.</p>
+            <p>Offline Capability relies on caching. Deciding on a proper caching strategy can be tricky because there are different techniques and business needs that we need to take into consideration.</p>
+            <p>To achieve Offline Capability Polymer apps can take advantage of a couple of techniques that you can apply, depending on your needs:</p>
+            <ul>
+                <li>Service Workers: proxy between your app and the server. Caches pages and potentially data.</li>
+                <li><code>app-storage</code>: Read-only offline access to application data.</li>
+                <li><code>fetch-element</code> or some other queue mechanism.</li>
+            </ul>
+            <p>Lets look at how we can apply these techniques:</p>
+
 
             <div class="card inset">
-                <h4>Service Worker Support</h4>
+                <h4>Service Workers</h4>
+                <p>A Service Worker runs as a background task in your browser, not in your app. It is still active, even when your browser is shutdown.</p>
+                <p>Service Workers act as a proxy between the the app and the server. It intercepts requests to the server and provides a response from the cache, before sending the request to the server to refresh the cache.</p>
+                <p>Service Workers are generated during the build, based on <code>sw-precache-config.js</code>. To see the effects, you have to run a built version of your app.</p>
+                <p>To work with service worker, your application must be served over HTTPS, or from localhost.</p>
                 <p>Service Workers are not supported by all browsers (yet). In it's absence, your app will use standard browser caching. As a result, your app will not startup if there is no internet connection.</p>
                 <p>Check out <a href="https://caniuse.com/#search=service%20workers" target="_blank">Can I Use: Service Workers</a> to see which browsers support SW.</p>
             </div>
 
-            <p>To achieve Offline Capability Polymer takes advantage of the Service Workers, a W3C standard. </p>
-            <p>A Service Worker runs as a background task in your browser, not in your app. It is still active, even when your browser is shutdown.</p>
+            <h4>Page Cache</h4>
+            <p>Since your HTML pages don't change very often, it makes sense to store them in a cache so that next time your user needs to load the page, he won't have to wait for the actual download. This is also useful when the user has no internet connection. Pages will then be served from the cache. </p>
+            <p>Polymer employs Service Workers to achieve this. If you created an application using the CLI, your in luck. Your app already has Service Worker page caching built into it.</p>
 
-            <p>The Service Worker acts as a proxy between the the app and the server.</p>
+
+
+            <div style="clear: both;"></div>
+
+            <p> Your <code>index.html</code> initializes the service worker with the following lines.</p>
+            <pcl-sniplet code=
+"navigator.serviceWorker.register('service-worker.js', {
+    scope: Polymer.rootPath,
+});"
+            ></pcl-sniplet>
+
+            <P>Note that it contains a reference to <code>service-worker.js</code>. This file is generated is during the build, based on <code>sw-precache-config.js</code>, which looks like this:</P>
+            <pcl-sniplet code=
+"module.exports = {
+  staticFileGlobs: [
+    'index.html',
+    'manifest.json',
+    'bower_components/webcomponentsjs/*',
+  ],
+  navigateFallback: 'index.html',
+};"
+            ></pcl-sniplet>
+            <h4>Data Cache</h4>
+            <p>We can cache read only data in two ways:</p>
+            <p>We can get the service worker to do this for us by adding <code>runtimeCaching</code> to <code>sw-precache-config.js</code>. This is an example:</p>
+            <pcl-sniplet code=
+"runtimeCaching: [
+    {
+        origin: 'https://dhl.toefel.nl',
+        urlPattern: '/(.*)',
+        handler: 'networkFirst',
+        options: {
+            cache: {
+                maxEntries: 200,
+                name: 'get-trips'
+            }
+        }
+    },
+]"></pcl-sniplet>
+            <p>Please check the docs for full details.</p>
+            <p>Alternativly, we can use app <a href="https://github.com/PolymerElements/app-storage" target="_blank">app-storage</a> to create a data cache in IndexedDB (browser storage).</p>
+            <pcl-sniplet code=
+'<iron-ajax
+    url="/api/cats"
+    handle-as="json"
+    last-response="{{liveData} }">
+</iron-ajax>
+<app-indexeddb-mirror
+    key="cats"
+    data="{{liveData} }"
+    persisted-data="{{persistedData} }">
+</app-indexeddb-mirror>'
+            ></pcl-sniplet>
+            <p>In this case you will also want to add <code>session="a-unique-session-key-413"</code> to prevent users from accessing data that is not theirs. See the docs for details.</p>
+
+
+
 
             <p>    <a href="https://jakearchibald.com/2014/offline-cookbook/" target="_blank">The offline cookbook</a></p>
 
-            <img class="card" src="../images/serviceWorker.svg"  width="250">
-            <h3>Service Worker</h3>
+            <h4>Post Queue</h4>
+            <p>There a some instances where we have to be able to store transactions in a queue until the user has a proper internet connection.</p>
+
+
             <p><a href="https://jakearchibald.com/2014/offline-cookbook/#cache-then-network" target="_blank">The offline cookbook: Cache then network</a>.</p>
             <p>TODO</p>
             <h3></h3>
-            <p>TODO</p>
+            <p><a href="https://codelabs.developers.google.com/codelabs/polymer-offline-weather/index.html?index=..%2F..%2Findex#0" target="_blank">Build an Offline Weather App with &ltpolymer></a>
+
+                <a href="https://www.webcomponents.org/element/jordanfinners/fetch-element" target="_blank">fetch-element</a>
+
+                <a href="https://developers.google.com/web/showcase/2015/service-workers-iowa#updates_to_users_schedules" target="_blank">Updates to Users’ Schedules</a>
+            </p>
 
             <div style="clear: both;"></div>
 
