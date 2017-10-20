@@ -51,7 +51,7 @@
             <h4>Page Cache</h4>
             <p>Since your HTML pages don't change very often, it makes sense to store them in a cache so that next time your user needs to load the page, he won't have to wait for the actual download. This is also useful when the user has no internet connection. Pages will then be served from the cache. </p>
             <p>Polymer employs Service Workers to achieve this. If you created an application using the CLI, your in luck. Your app already has Service Worker page caching built into it.</p>
-
+            <p>When caching 'static' resources you probably want to use the <a href="https://jakearchibald.com/2014/offline-cookbook/#cache-then-network" target="_blank">The offline cookbook: Cache then network</a> caching strategy (also known as cash first).</p>
 
 
             <div style="clear: both;"></div>
@@ -75,7 +75,7 @@
 };"
             ></pcl-sniplet>
             <h4>Data Cache</h4>
-            <p>We can cache read only data in two ways:</p>
+            <p>When thinking of data cache we probably want to use the <a href="https://jakearchibald.com/2014/offline-cookbook/#network-falling-back-to-cache" target="_blank">The offline cookbook: Network falling back to cache</a> caching strategy (also known as network first). We can cache read only data in two ways:</p>
             <p>We can get the service worker to do this for us by adding <code>runtimeCaching</code> to <code>sw-precache-config.js</code>. This is an example:</p>
             <pcl-sniplet code=
 "runtimeCaching: [
@@ -107,27 +107,19 @@
             ></pcl-sniplet>
             <p>In this case you will also want to add <code>session="a-unique-session-key-413"</code> to prevent users from accessing data that is not theirs. See the docs for details.</p>
 
-
-
-
-            <p>    <a href="https://jakearchibald.com/2014/offline-cookbook/" target="_blank">The offline cookbook</a></p>
-
             <h4>Post Queue</h4>
-            <p>There a some instances where we have to be able to store transactions in a queue until the user has a proper internet connection.</p>
+            <p>There a some instances where we have to be able to store transactions in a queue until the user has a proper internet connection. Again, there are a couple of ways of achieving this.</p>
 
+            <p>You can use <a href="https://www.webcomponents.org/element/jordanfinners/fetch-element" target="_blank">fetch-element</a> to create a POST queue. When the user does a POST while there is no internet connection, the request will be stored in a queue. When internet connection is reestablished, the queue is sent to the server. How you deal with conflict resolution is up to you.</p>
 
-            <p><a href="https://jakearchibald.com/2014/offline-cookbook/#cache-then-network" target="_blank">The offline cookbook: Cache then network</a>.</p>
-            <p>TODO</p>
-            <h3></h3>
-            <p><a href="https://codelabs.developers.google.com/codelabs/polymer-offline-weather/index.html?index=..%2F..%2Findex#0" target="_blank">Build an Offline Weather App with &ltpolymer></a>
+            <p>Alternatively you can create a Service Worker that does this for you. While this requires a bit more hacking, it is probably the preferred way to go. This artical explains how to do this: <a href="https://developers.google.com/web/showcase/2015/service-workers-iowa#updates_to_users_schedules" target="_blank">Updates to Users’ Schedules</a></p>
 
-                <a href="https://www.webcomponents.org/element/jordanfinners/fetch-element" target="_blank">fetch-element</a>
+            <h4>Resources</h4>
+            <p>Check the <a href="https://jakearchibald.com/2014/offline-cookbook/" target="_blank">The offline cookbook</a> for more information on caching strategies:</p>
 
-                <a href="https://developers.google.com/web/showcase/2015/service-workers-iowa#updates_to_users_schedules" target="_blank">Updates to Users’ Schedules</a>
-            </p>
+            <p>This codelab deals with background sync of weather data <a href="https://codelabs.developers.google.com/codelabs/polymer-offline-weather/index.html?index=..%2F..%2Findex#0" target="_blank">Build an Offline Weather App with &ltpolymer></a></p>
 
-            <div style="clear: both;"></div>
-
+            <p>This presentation delves into many aspects of offline capability:</p>
             <google-youtube style="float:right;"
                             video-id="cmGr0RszHc8"
                             rel="0"
@@ -135,6 +127,18 @@
             </google-youtube>
 
             <div style="clear: both;"></div>
+        </div>
+
+        <div class="card exercise">
+            <p>Try Building you app, then running the built version, and then switching down the network connection. from the command prompt::</p>
+            <pcl-sniplet code=
+'polymer build
+polymer serve build/xxx
+
+'
+            ></pcl-sniplet>
+            <p>Now disable your network.</p>
+            <p>Note that your app still starts, as if there was a network connection.</p>
         </div>
     </template>
 
