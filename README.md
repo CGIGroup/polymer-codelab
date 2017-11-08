@@ -56,5 +56,4 @@ TODO in case of version confict resolution, choose the highest version.
 
 Now we can start the Codelab app: 
 
-    cd polymer-codelab
     polymer serve --open
