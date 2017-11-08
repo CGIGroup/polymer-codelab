@@ -43,7 +43,14 @@ Switch to your favorite source directory and execute this command to install the
     cd ....Git
     git clone https://github.com/CGIGroup/polymer-codelab.git
 
-TODO version confict resolution
+#### Install
+
+Switch to polymer-codelab and install : 
+
+    cd polymer-codelab
+    bower install
+
+TODO in case of version confict resolution, choose the highest version.
 
 #### Start the app
 
